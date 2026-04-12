@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  # Nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Nix settings (Determinate Nix manages the daemon, so nix.enable = false)
+  nix.enable = false;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   # Allow unfree packages
