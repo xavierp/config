@@ -7,6 +7,7 @@
     ./ghostty.nix
     ./claude.nix
     ./tmux.nix
+    ./neovim.nix
   ];
 
   home.stateVersion = "25.05";

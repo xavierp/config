@@ -22,7 +22,6 @@
     terraform
     terragrunt
     tflint
-    neovim
     gh
     difftastic
   ];
