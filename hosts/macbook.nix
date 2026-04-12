@@ -14,6 +14,7 @@
   ];
 
   # Keyboard
+  system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToControl = true;
 
   # Homebrew (for GUI apps / casks only)
@@ -31,7 +32,6 @@
       "dash"
       "datagrip"
       "discord"
-      "docker"
       "docker-desktop"
       "firefox"
       "font-fira-code"
@@ -58,6 +58,7 @@
   };
 
   # Required for nix-darwin
+  system.primaryUser = "x";
   system.stateVersion = 6;
 
   # User
