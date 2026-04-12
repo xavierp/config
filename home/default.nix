@@ -6,6 +6,7 @@
     ./git.nix
     ./ghostty.nix
     ./claude.nix
+    ./tmux.nix
   ];
 
   home.stateVersion = "25.05";
