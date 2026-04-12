@@ -4,7 +4,7 @@
   programs.tmux = {
     enable = true;
     shell = "${pkgs.zsh}/bin/zsh";
-    prefix = "C-Space";
+    prefix = "C-space";
     baseIndex = 1;
     escapeTime = 0;
     historyLimit = 50000;
@@ -49,6 +49,7 @@
       bind s split-window -v -c "#{pane_current_path}"
       unbind '"'
       unbind %
+      bind-key C-Space send-prefix
 
       # New window keeps current path
       bind c new-window -c "#{pane_current_path}"

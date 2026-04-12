@@ -36,5 +36,10 @@
 
     # Splits
     focus-follows-mouse = false
+
+    # Force Ctrl+Space through to terminal as NUL byte
+    keybind = ctrl+space=unbind
+
+
   '';
 }
