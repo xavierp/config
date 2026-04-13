@@ -22,6 +22,7 @@
     };
     casks = [
       "1password"
+      "karabiner-elements"
       "alacritty"
       "bruno"
       "chromium"

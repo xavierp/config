@@ -47,7 +47,7 @@ nix flake update
 - **Determinate Nix**: `nix.enable = false` in macbook.nix — Determinate manages the daemon, nix-darwin must not
 - **system.primaryUser = "x"** required for homebrew module
 - **Ghostty ctrl+space**: `keybind = ctrl+space=unbind` needed so tmux prefix works
-- **Caps Lock → tmux prefix**: hidutil maps CapsLock to F13, Ghostty converts F13 to NUL byte (= Ctrl+Space), tmux sees its C-space prefix
+- **Caps Lock → tmux prefix**: Karabiner-Elements sends Ctrl+Space on CapsLock press, tmux sees C-space prefix. Config must be a regular file (not symlink) — home.activation copies it.
 - **home-manager.backupFileExtension = "bak"**: old dotfiles get .bak suffix instead of blocking
 - **Mason disabled**: LSP servers installed via Nix in neovim.nix, not via Mason
 - **nvm/rbenv**: still managed outside Nix (sourced in shell.nix initContent)
