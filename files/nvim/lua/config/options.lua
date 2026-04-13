@@ -5,3 +5,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.swapfile = false
+
+-- Spell: EN + FR, handle camelCase/acronyms properly
+vim.opt.spelllang = { "en", "fr" }
+vim.opt.spelloptions = "camel"

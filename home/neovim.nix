@@ -16,6 +16,16 @@
     recursive = true;
   };
 
+  # Spell files managed by Nix
+  xdg.configFile."nvim/spell/fr.utf-8.spl".source = builtins.fetchurl {
+    url = "https://ftp.nluug.nl/pub/vim/runtime/spell/fr.utf-8.spl";
+    sha256 = "0q9vws3fyi33yladjx5n0f6w0gbk76mz2n6fb8bpr24dp419gyxb";
+  };
+  xdg.configFile."nvim/spell/fr.utf-8.sug".source = builtins.fetchurl {
+    url = "https://ftp.nluug.nl/pub/vim/runtime/spell/fr.utf-8.sug";
+    sha256 = "0n1zddfa5mhk2lxm5azixx8fzdvk6z5277m8hsrbp41cnhrbr502";
+  };
+
   # LSP servers and tools installed via Nix (not Mason)
   home.packages = with pkgs; [
     # LSP servers
