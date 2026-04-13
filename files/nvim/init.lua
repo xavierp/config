@@ -39,6 +39,9 @@ require("lazy").setup({
     lazy = false,
     version = false,
   },
+  rocks = {
+    enabled = false,
+  },
   checker = {
     enabled = true,
     notify = false,

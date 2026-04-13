@@ -12,6 +12,7 @@
     keyMode = "vi";
     terminal = "tmux-256color";
     sensibleOnTop = true;
+    focusEvents = true;
 
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator

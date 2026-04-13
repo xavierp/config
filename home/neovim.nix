@@ -21,13 +21,15 @@
     # LSP servers
     lua-language-server
     ruby-lsp
-    typescript-language-server
+    vtsls                 # TypeScript LSP
     terraform-ls
     pyright
     bash-language-server
     marksman
     vscode-json-languageserver
     yaml-language-server
+    dockerfile-language-server-nodejs
+    docker-compose-language-service
 
     # Formatters & linters
     stylua
@@ -38,6 +40,8 @@
     shellcheck
 
     # Tools needed by neovim plugins
+    tree-sitter           # treesitter CLI for compiling parsers
+    lazygit               # git TUI (Space g g in LazyVim)
     gcc
     gnumake
     nodejs
