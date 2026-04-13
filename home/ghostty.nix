@@ -37,8 +37,11 @@
     # Splits
     focus-follows-mouse = false
 
-    # Force Ctrl+Space through to terminal as NUL byte
+    # Force Ctrl+Space through to terminal (for tmux prefix)
     keybind = ctrl+space=unbind
+
+    # CapsLock (remapped to F13 via hidutil) sends Ctrl+Space (NUL byte) for tmux prefix
+    keybind = f13=text:\x00
 
 
   '';

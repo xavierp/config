@@ -14,7 +14,7 @@
 
   programs.home-manager.enable = true;
 
-  # Ensure Caps Lock → Ctrl remap persists at login
+  # Remap Caps Lock → F13 (used as tmux prefix via prefix2)
   launchd.agents.caps-lock-remap = {
     enable = true;
     config = {
@@ -23,7 +23,7 @@
         "/usr/bin/hidutil"
         "property"
         "--set"
-        ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}''
+        ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000068}]}''
       ];
       RunAtLoad = true;
     };

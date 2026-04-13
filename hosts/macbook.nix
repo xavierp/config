@@ -13,10 +13,6 @@
     vim
   ];
 
-  # Keyboard
-  system.keyboard.enableKeyMapping = true;
-  system.keyboard.remapCapsLockToControl = true;
-
   # Homebrew (for GUI apps / casks only)
   homebrew = {
     enable = true;
