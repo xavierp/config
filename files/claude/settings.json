@@ -1,0 +1,16 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/x/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "feedbackSurveyState": {
+    "lastShownTime": 1754313282579
+  }
+}
