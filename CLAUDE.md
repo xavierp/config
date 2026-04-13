@@ -5,57 +5,66 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What is this repo
 
 Dotfiles and machine configuration managed via Nix (nix-darwin + home-manager) on macOS.
-Single flake, one `darwin-rebuild switch --flake .` to rebuild everything.
+Single flake, one `sudo darwin-rebuild switch --flake ~/src/config#macbook` to rebuild everything.
 
 ## Architecture
 
 ```
 config/
-├── flake.nix          # inputs (nixpkgs, nix-darwin, home-manager) + darwinConfigurations
+├── flake.nix              # inputs (nixpkgs, nix-darwin, home-manager) + darwinConfigurations."macbook"
 ├── hosts/
-│   └── macbook.nix    # nix-darwin: system settings, casks, keyboard remap
+│   └── macbook.nix        # nix-darwin: system settings, casks, keyboard remap, primaryUser
 ├── home/
-│   ├── default.nix    # home-manager: imports all modules
-│   ├── shell.nix      # zsh + modern CLI tools + aliases
-│   ├── git.nix        # git config (1Password signing, difftastic, delta)
-│   ├── ghostty.nix    # terminal config
-│   └── claude.nix     # Claude Code config symlinks
-├── files/claude/      # source files for Claude Code configs
+│   ├── default.nix        # home-manager: imports all modules + caps lock launchd agent
+│   ├── shell.nix          # zsh + modern CLI tools (zoxide, fzf, bat, eza, rg, fd, direnv, starship)
+│   ├── git.nix            # git config (1Password SSH signing, difftastic, delta, aliases)
+│   ├── ghostty.nix        # terminal config (nord, ctrl+space=unbind for tmux)
+│   ├── claude.nix         # Claude Code config symlinks
+│   ├── tmux.nix           # tmux (prefix C-space, vim-tmux-navigator, catppuccin, resurrect)
+│   └── neovim.nix         # neovim + LSP servers + LazyVim config symlink
+├── files/
+│   ├── claude/            # Claude Code settings.json, mcp.json
+│   └── nvim/              # LazyVim config (init.lua, plugins, keymaps)
 └── docs/
-    └── cheatsheet.md  # quick reference for tools and shortcuts
+    ├── cheatsheet.md      # quick reference for all tools and shortcuts
+    └── superpowers/       # design specs and implementation plans
 ```
 
 ## Key commands
 
 ```bash
-# Rebuild system after changes
-darwin-rebuild switch --flake .
+# Rebuild system after changes (sudo required)
+sudo darwin-rebuild switch --flake ~/src/config#macbook
 
-# Update flake inputs (nixpkgs, home-manager, nix-darwin)
+# IMPORTANT: new .nix files must be `git add`ed before rebuild (flakes only see tracked files)
+
+# Update flake inputs
 nix flake update
-
-# Check flake validity
-nix flake check
 ```
 
-## Design decisions
+## Critical quirks
 
-- **Nix flake** (not classic nix-darwin config) for reproducibility and lockfile
-- **nixpkgs unstable** for latest CLI tool versions
-- **home-manager as nix-darwin module** (not standalone) — single rebuild command
-- **Hybrid approach**: Nix for CLI tools, Homebrew casks (piloted by nix-darwin) for GUI apps
-- **No Karabiner**: Caps Lock → Ctrl remapped natively via nix-darwin/hidutil
-- **nvm/rbenv kept outside Nix** for now to avoid breaking dev workflows
+- **Determinate Nix**: `nix.enable = false` in macbook.nix — Determinate manages the daemon, nix-darwin must not
+- **system.primaryUser = "x"** required for homebrew module
+- **Ghostty ctrl+space**: `keybind = ctrl+space=unbind` needed so tmux prefix works
+- **Caps Lock remap**: launchd agent in default.nix as backup (nix-darwin's hidutil doesn't always persist)
+- **home-manager.backupFileExtension = "bak"**: old dotfiles get .bak suffix instead of blocking
+- **Mason disabled**: LSP servers installed via Nix in neovim.nix, not via Mason
+- **nvm/rbenv**: still managed outside Nix (sourced in shell.nix initContent)
+- **homebrew.onActivation.cleanup = "none"**: set to "zap" once cask list is verified
 
 ## Conventions
 
-- Nix files split by concern (shell.nix, git.nix, etc.), not one monolithic config
-- When adding a new tool: add to the relevant `.nix` file, not to brew
-- When adding a GUI app: add to the casks list in `hosts/macbook.nix`
-- Commit messages in English, conventional commits (feat, fix, chore)
+- Nix files split by concern, not monolithic
+- New CLI tool: add to relevant `.nix` file in home/
+- New GUI app: add to casks list in `hosts/macbook.nix`
+- New nvim plugin: add lua file in `files/nvim/lua/plugins/`
+- Commit messages: English, conventional commits (feat, fix, chore)
 
-## Current status
+## Status
 
-- Phase 1: Nix foundation + shell + modern CLI tools + config versioning (in progress)
-- Phase 2: tmux + LazyVim + full dev environment (planned)
+- Phase 1: done (Nix + shell + CLI tools + git + ghostty + claude configs)
+- Phase 2: done (tmux + LazyVim + LSP servers + vim-tmux-navigator)
+- Phase 3: planned (Aerospace TWM, Obsidian config, server *arr + home automation)
 - Design spec: `docs/superpowers/specs/2026-04-10-nix-dotfiles-design.md`
+- Plans: `docs/superpowers/plans/`
