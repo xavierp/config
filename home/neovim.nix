@@ -38,6 +38,7 @@
     ruff
     shfmt
     shellcheck
+    markdownlint-cli2
 
     # Tools needed by neovim plugins
     tree-sitter           # treesitter CLI for compiling parsers
