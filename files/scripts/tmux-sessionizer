@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# tmux-sessionizer: fuzzy-find a project directory and create/switch to a tmux session for it
+
+SEARCH_DIRS=(
+  ~/src
+)
+
+selected=$(find "${SEARCH_DIRS[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf --reverse --prompt="project > ")
+
+if [[ -z "$selected" ]]; then
+  exit 0
+fi
+
+session_name=$(basename "$selected" | tr './ ' '---')
+
+if tmux has-session -t="$session_name" 2>/dev/null; then
+  tmux switch-client -t "$session_name"
+else
+  tmux new-session -d -s "$session_name" -c "$selected"
+  tmux switch-client -t "$session_name"
+fi

@@ -13,10 +13,6 @@
     vim
   ];
 
-  # Keyboard
-  system.keyboard.enableKeyMapping = true;
-  system.keyboard.remapCapsLockToControl = true;
-
   # Homebrew (for GUI apps / casks only)
   homebrew = {
     enable = true;
@@ -26,6 +22,7 @@
     };
     casks = [
       "1password"
+      "karabiner-elements"
       "alacritty"
       "bruno"
       "chromium"

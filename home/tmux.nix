@@ -53,7 +53,11 @@
       bind-key C-Space send-prefix
 
       # New window keeps current path
-      bind c new-window -c "#{pane_current_path}"
+      bind n new-window -c "#{pane_current_path}"
+      unbind c
+
+      # Fuzzy session switcher (create or switch)
+      bind f display-popup -E "~/.local/bin/tmux-sessionizer"
 
       # Resize panes with Ctrl+hjkl (hold prefix)
       bind -r H resize-pane -L 5

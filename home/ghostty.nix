@@ -37,8 +37,12 @@
     # Splits
     focus-follows-mouse = false
 
-    # Force Ctrl+Space through to terminal as NUL byte
+    # Force Ctrl+Space through to terminal (for tmux prefix)
     keybind = ctrl+space=unbind
+
+    # Clickable links
+    link-url = true
+
 
 
   '';

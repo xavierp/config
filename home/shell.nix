@@ -41,6 +41,11 @@
     };
 
     initContent = ''
+      # Auto-attach to tmux session "main" (skip if already inside tmux)
+      if [[ -z "$TMUX" && "$TERM_PROGRAM" == "ghostty" ]]; then
+        exec tmux new-session -A -s main
+      fi
+
       # Fix zsh glob errors on *, ?, [
       setopt NO_NOMATCH
 
