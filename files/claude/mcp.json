@@ -1,10 +1,12 @@
 {
   "mcpServers": {
-    "playwright": {
+    "context7": {
       "command": "npx",
-      "args": [
-        "@playwright/mcp@latest"
-      ]
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "aws-api": {
+      "command": "npx",
+      "args": ["-y", "@awslabs/aws-api-mcp-server"]
     }
   }
 }
