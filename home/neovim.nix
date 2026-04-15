@@ -38,7 +38,7 @@
     marksman
     vscode-json-languageserver
     yaml-language-server
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     docker-compose-language-service
 
     # Formatters & linters
