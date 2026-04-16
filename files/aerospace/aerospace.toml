@@ -1,0 +1,84 @@
+# Aerospace TWM config
+# Bindings use ctrl+alt (physical left Alt via Karabiner remap)
+# Spec: docs/superpowers/specs/2026-04-16-hyper-aerospace-keymap-design.md
+
+start-at-login = true
+
+# Normalizations (recommended defaults)
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# Mouse follows focus across monitors
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# No gaps to start — adjust later
+[gaps]
+inner.horizontal = 0
+inner.vertical = 0
+outer.left = 0
+outer.right = 0
+outer.top = 0
+outer.bottom = 0
+
+# Main keybindings (ctrl+alt = physical left Alt via Karabiner)
+[mode.main.binding]
+
+# Focus window (vim-style)
+ctrl-alt-h = 'focus left'
+ctrl-alt-j = 'focus down'
+ctrl-alt-k = 'focus up'
+ctrl-alt-l = 'focus right'
+
+# Move window
+ctrl-alt-shift-h = 'move left'
+ctrl-alt-shift-j = 'move down'
+ctrl-alt-shift-k = 'move up'
+ctrl-alt-shift-l = 'move right'
+
+# Switch workspace
+ctrl-alt-1 = 'workspace 1'
+ctrl-alt-2 = 'workspace 2'
+ctrl-alt-3 = 'workspace 3'
+ctrl-alt-4 = 'workspace 4'
+ctrl-alt-5 = 'workspace 5'
+ctrl-alt-6 = 'workspace 6'
+ctrl-alt-7 = 'workspace 7'
+ctrl-alt-8 = 'workspace 8'
+ctrl-alt-9 = 'workspace 9'
+
+# Move window to workspace
+ctrl-alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+ctrl-alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+ctrl-alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+ctrl-alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+ctrl-alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+ctrl-alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+ctrl-alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+ctrl-alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+ctrl-alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+
+# Layout
+ctrl-alt-f = 'fullscreen'
+ctrl-alt-shift-f = 'layout floating tiling'
+ctrl-alt-slash = 'layout tiles horizontal vertical'
+ctrl-alt-comma = 'layout accordion horizontal vertical'
+
+# Resize
+ctrl-alt-minus = 'resize smart -50'
+ctrl-alt-equal = 'resize smart +50'
+
+# Workspace navigation
+ctrl-alt-tab = 'workspace-back-and-forth'
+ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+# Launch terminal
+ctrl-alt-enter = 'exec-and-forget open -a Ghostty'
+
+# Window rules
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace M'
