@@ -9,6 +9,7 @@
     ./karabiner.nix
     ./tmux.nix
     ./neovim.nix
+    ./aerospace.nix
   ];
 
   home.stateVersion = "25.05";

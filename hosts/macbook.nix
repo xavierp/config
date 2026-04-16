@@ -22,6 +22,7 @@
     };
     casks = [
       "1password"
+      "aerospace"
       "karabiner-elements"
       "alacritty"
       "bruno"
