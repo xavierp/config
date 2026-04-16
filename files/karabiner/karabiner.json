@@ -6,7 +6,7 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "CapsLock → Ctrl+Space (tmux prefix)",
+            "description": "CapsLock → Hyper (Cmd+Ctrl+Opt+Shift)",
             "manipulators": [
               {
                 "type": "basic",
@@ -18,9 +18,28 @@
                 },
                 "to": [
                   {
-                    "key_code": "spacebar",
-                    "modifiers": ["left_control"],
-                    "repeat": false
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_control", "left_option"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Left Option → Ctrl+Option (for Aerospace left/right Alt distinction)",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "left_option",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_option",
+                    "modifiers": ["left_control"]
                   }
                 ]
               }
