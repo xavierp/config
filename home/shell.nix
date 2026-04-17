@@ -19,7 +19,6 @@
 
     # Dev tools
     awscli2
-    terraform
     terragrunt
     tflint
     gh
@@ -48,14 +47,6 @@
 
       # Fix zsh glob errors on *, ?, [
       setopt NO_NOMATCH
-
-      # Keep nvm working (installed outside Nix)
-      export NVM_DIR="$HOME/.nvm"
-      [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-      [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
-      # Keep rbenv working (installed outside Nix)
-      eval "$(rbenv init - --no-rehash zsh)"
     '';
 
     shellAliases = {
