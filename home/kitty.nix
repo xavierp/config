@@ -9,13 +9,19 @@
       size = 12.0;
     };
 
+    extraConfig = ''
+      bold_font        JetBrainsMono Nerd Font Bold
+      italic_font      JetBrainsMono Nerd Font Italic
+      bold_italic_font JetBrainsMono Nerd Font Bold Italic
+    '';
+
     themeFile = "Nord";
 
     settings = {
       # Window
       window_padding_width = 10;
       background_opacity = "0.95";
-      confirm_os_window_close = -1;
+      confirm_os_window_close = 0;
 
       # Cursor
       cursor_shape = "block";
