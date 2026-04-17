@@ -22,7 +22,7 @@
     };
     casks = [
       "1password"
-      "aerospace"
+      # "aerospace"  # TODO: re-enable once macOS Spaces settings are tuned
       "karabiner-elements"
       "alacritty"
       "bruno"

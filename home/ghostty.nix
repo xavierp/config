@@ -53,15 +53,15 @@
     keybind = cmd+shift+s=text:\x00s
     keybind = cmd+f=text:\x00f
     keybind = cmd+n=text:\x00:new-session\x0a
-    keybind = cmd+1=text:\x001
-    keybind = cmd+2=text:\x002
-    keybind = cmd+3=text:\x003
-    keybind = cmd+4=text:\x004
-    keybind = cmd+5=text:\x005
-    keybind = cmd+6=text:\x006
-    keybind = cmd+7=text:\x007
-    keybind = cmd+8=text:\x008
-    keybind = cmd+9=text:\x009
+    keybind = cmd+digit_1=text:\x00\x31
+    keybind = cmd+digit_2=text:\x00\x32
+    keybind = cmd+digit_3=text:\x00\x33
+    keybind = cmd+digit_4=text:\x00\x34
+    keybind = cmd+digit_5=text:\x00\x35
+    keybind = cmd+digit_6=text:\x00\x36
+    keybind = cmd+digit_7=text:\x00\x37
+    keybind = cmd+digit_8=text:\x00\x38
+    keybind = cmd+digit_9=text:\x00\x39
 
     # Clickable links
     link-url = true
