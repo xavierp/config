@@ -18,6 +18,9 @@
     themeFile = "Nord";
 
     settings = {
+      # Font rendering (thinner strokes, closer to Ghostty)
+      text_composition_strategy = "legacy";
+
       # Window
       window_padding_width = 10;
       background_opacity = "0.95";
