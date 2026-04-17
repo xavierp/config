@@ -62,6 +62,8 @@
     keybind = cmd+digit_7=text:\x00\x37
     keybind = cmd+digit_8=text:\x00\x38
     keybind = cmd+digit_9=text:\x00\x39
+    keybind = cmd+shift+left_bracket=text:\x00p
+    keybind = cmd+shift+right_bracket=text:\x00:next-window\x0a
 
     # Clickable links
     link-url = true
