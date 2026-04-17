@@ -42,7 +42,7 @@
 
     initContent = ''
       # Auto-attach to tmux session "main" (skip if already inside tmux)
-      if [[ -z "$TMUX" && "$TERM_PROGRAM" == "ghostty" ]]; then
+      if [[ -z "$TMUX" && ("$TERM_PROGRAM" == "ghostty" || "$TERM_PROGRAM" == "kitty") ]]; then
         exec tmux new-session -A -s main
       fi
 
