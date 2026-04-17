@@ -70,40 +70,56 @@ nix flake update                                      # mettre a jour nixpkgs, h
 | `g amend` | Amend sans changer le message |
 | `g wip` | Commit WIP rapide |
 
-## Keyboard
+## Keyboard layers
 
-| Touche | Action |
-|---|---|
-| `Caps Lock` | Agit comme `Ctrl` (remap systeme) |
-| `Ctrl+Space` | Prefix tmux |
-| `Ctrl+h/j/k/l` | Navigation entre panes tmux ET splits nvim |
+| Touche physique | Role | Gere par |
+|---|---|---|
+| `CapsLock` | Hyper (Cmd+Ctrl+Opt+Shift) — reserve, pas de bindings | Karabiner |
+| `Left Alt + key` | Aerospace TWM (workspaces, tiling) | Aerospace |
+| `Right Alt + key` | Caracteres speciaux macOS (€, accents) | macOS |
+| `Cmd + key` | tmux operations + navigation panes (Ghostty only) | Ghostty |
+| `Ctrl + h/j/k/l` | vim-tmux-navigator (envoye par Ghostty via Cmd+hjkl) | tmux + nvim |
+| `Space` | Leader neovim | LazyVim |
 
-## Tmux
-
-### Basics
-
-| Raccourci | Action |
-|---|---|
-| `Ctrl+Space` | Prefix (avant toute commande tmux) |
-| `Prefix, c` | Nouveau window |
-| `Prefix, v` | Split vertical |
-| `Prefix, s` | Split horizontal |
-| `Prefix, x` | Fermer le pane courant |
-| `Prefix, &` | Fermer le window courant |
-| `Prefix, d` | Detacher la session |
-| `Prefix, r` | Recharger la config tmux |
+## Tmux via Cmd (Ghostty)
 
 ### Navigation
 
 | Raccourci | Action |
 |---|---|
-| `Ctrl+h` | Pane gauche (aussi dans nvim) |
-| `Ctrl+j` | Pane bas (aussi dans nvim) |
-| `Ctrl+k` | Pane haut (aussi dans nvim) |
-| `Ctrl+l` | Pane droite (aussi dans nvim) |
-| `Prefix, 1-9` | Aller au window N |
-| `Prefix, n` | Window suivant |
+| `Cmd+H` | Pane gauche (aussi dans nvim) |
+| `Cmd+J` | Pane bas (aussi dans nvim) |
+| `Cmd+K` | Pane haut (aussi dans nvim) |
+| `Cmd+L` | Pane droite (aussi dans nvim) |
+| `Cmd+1-9` | Aller au window N |
+| `Cmd+[` | Window precedent |
+| `Cmd+]` | Window suivant |
+
+### Operations
+
+| Raccourci | Action |
+|---|---|
+| `Cmd+T` | Nouveau window |
+| `Cmd+W` | Fermer le pane courant |
+| `Cmd+S` | Split vertical |
+| `Cmd+Shift+S` | Split horizontal |
+| `Cmd+F` | Session switcher (tmux-sessionizer) |
+| `Cmd+N` | Nouvelle session |
+
+### Tmux prefix (fallback / SSH)
+
+| Raccourci | Action |
+|---|---|
+| `Ctrl+Space` | Prefix tmux (pour SSH ou fallback) |
+| `Prefix, v` | Split vertical |
+| `Prefix, s` | Split horizontal |
+| `Prefix, x` | Fermer le pane courant |
+| `Prefix, n` | Nouveau window |
+| `Prefix, N` | Window suivant |
 | `Prefix, p` | Window precedent |
+| `Prefix, d` | Detacher la session |
+| `Prefix, r` | Recharger la config tmux |
+| `Prefix, f` | Session switcher |
 
 ### Resize
 
@@ -131,6 +147,21 @@ nix flake update                                      # mettre a jour nixpkgs, h
 | `tmux ls` | Lister les sessions |
 | `tmux a -t nom` | Rattacher a une session |
 | `tmux kill-session -t nom` | Supprimer une session |
+
+## Aerospace TWM (Left Alt — paused, a configurer)
+
+| Raccourci | Action |
+|---|---|
+| `Left Alt + H/J/K/L` | Focus window |
+| `Left Alt + Shift + H/J/K/L` | Move window |
+| `Left Alt + 1-9` | Switch workspace |
+| `Left Alt + Shift + 1-9` | Move window to workspace |
+| `Left Alt + F` | Fullscreen toggle |
+| `Left Alt + Shift + F` | Float toggle |
+| `Left Alt + /` | Layout toggle (tiles) |
+| `Left Alt + -/=` | Resize |
+| `Left Alt + Tab` | Previous workspace |
+| `Left Alt + Enter` | Ouvrir Ghostty |
 
 ## Neovim (LazyVim)
 

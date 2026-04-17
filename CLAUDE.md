@@ -15,15 +15,20 @@ config/
 ├── hosts/
 │   └── macbook.nix        # nix-darwin: system settings, casks, keyboard remap, primaryUser
 ├── home/
-│   ├── default.nix        # home-manager: imports all modules + caps lock launchd agent
+│   ├── default.nix        # home-manager: imports all modules
 │   ├── shell.nix          # zsh + modern CLI tools (zoxide, fzf, bat, eza, rg, fd, direnv, starship)
 │   ├── git.nix            # git config (1Password SSH signing, difftastic, delta, aliases)
-│   ├── ghostty.nix        # terminal config (nord, ctrl+space=unbind for tmux)
+│   ├── ghostty.nix        # terminal config (nord, super+ keybinds for tmux)
+│   ├── kitty.nix          # kitty terminal (alternative, same keybinds)
 │   ├── claude.nix         # Claude Code config symlinks
+│   ├── karabiner.nix      # Karabiner-Elements config (activation script, writable copy)
+│   ├── aerospace.nix      # Aerospace TWM config symlink
 │   ├── tmux.nix           # tmux (prefix C-space, vim-tmux-navigator, catppuccin, resurrect)
 │   └── neovim.nix         # neovim + LSP servers + LazyVim config symlink
 ├── files/
+│   ├── aerospace/         # Aerospace TWM config (ctrl+alt bindings)
 │   ├── claude/            # Claude Code settings.json, mcp.json
+│   ├── karabiner/         # Karabiner-Elements config (Hyper key + left Alt remap)
 │   └── nvim/              # LazyVim config (init.lua, plugins, keymaps)
 └── docs/
     ├── cheatsheet.md      # quick reference for all tools and shortcuts
@@ -46,8 +51,12 @@ nix flake update
 
 - **Determinate Nix**: `nix.enable = false` in macbook.nix — Determinate manages the daemon, nix-darwin must not
 - **system.primaryUser = "x"** required for homebrew module
-- **Ghostty ctrl+space**: `keybind = ctrl+space=unbind` needed so tmux prefix works
-- **Caps Lock → tmux prefix**: Karabiner-Elements sends Ctrl+Space on CapsLock press, tmux sees C-space prefix. Config must be a regular file (not symlink) — home.activation copies it.
+- **CapsLock → Hyper**: Karabiner-Elements sends Cmd+Ctrl+Opt+Shift on CapsLock. No bindings yet — reserved for future use.
+- **Left Alt → Ctrl+Alt**: Karabiner adds Ctrl to left_option presses so Aerospace can distinguish left/right Alt. Right Alt unchanged (special chars).
+- **Ghostty super+ keybinds**: Cmd+hjkl sends Ctrl+hjkl (vim-tmux-navigator), Cmd+t/w/s/f/n/1-9/[/] sends tmux prefix + action. Must use `super+` prefix (not `cmd+`) and `super+digit_N` for numbers to override Ghostty defaults.
+- **Ghostty macOS tab menu**: `home.activation.ghosttyDefaults` runs `defaults write` to disable macOS "Show Previous/Next Tab" menu shortcuts.
+- **Karabiner config**: must be a regular file (not symlink) — home.activation copies it.
+- **Aerospace TWM**: tiling WM, binds `ctrl+alt-*` (physical left Alt + key). Config at `files/aerospace/aerospace.toml`. Cask currently commented out — needs macOS Spaces settings tuned first.
 - **home-manager.backupFileExtension = "bak"**: old dotfiles get .bak suffix instead of blocking
 - **Mason disabled**: LSP servers installed via Nix in neovim.nix, not via Mason
 - **nvm/rbenv**: still managed outside Nix (sourced in shell.nix initContent)
@@ -65,6 +74,6 @@ nix flake update
 
 - Phase 1: done (Nix + shell + CLI tools + git + ghostty + claude configs)
 - Phase 2: done (tmux + LazyVim + LSP servers + vim-tmux-navigator)
-- Phase 3: planned (Aerospace TWM, Obsidian config, server *arr + home automation)
+- Phase 3: in progress (Hyper key done, Ghostty keybinds done, Aerospace config ready but paused, Obsidian + server *arr planned)
 - Design spec: `docs/superpowers/specs/2026-04-10-nix-dotfiles-design.md`
 - Plans: `docs/superpowers/plans/`
