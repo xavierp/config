@@ -10,6 +10,7 @@
     ./tmux.nix
     ./neovim.nix
     ./aerospace.nix
+    ./kitty.nix
   ];
 
   home.stateVersion = "25.05";

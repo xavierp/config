@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   xdg.configFile."ghostty/config".text = ''
@@ -62,13 +62,18 @@
     keybind = cmd+digit_7=text:\x00\x37
     keybind = cmd+digit_8=text:\x00\x38
     keybind = cmd+digit_9=text:\x00\x39
-    keybind = cmd+shift+left_bracket=text:\x00p
-    keybind = cmd+shift+right_bracket=text:\x00:next-window\x0a
+    keybind = cmd+left_bracket=text:\x00p
+    keybind = cmd+right_bracket=text:\x00\x4e
 
     # Clickable links
     link-url = true
+  '';
 
-
-
+  # Disable macOS "Show Previous/Next Tab" menu shortcuts that intercept Cmd+Shift+[/]
+  home.activation.ghosttyDefaults = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    /usr/bin/defaults write com.mitchellh.ghostty NSUserKeyEquivalents '{
+        "Show Previous Tab" = "\0";
+        "Show Next Tab" = "\0";
+    }'
   '';
 }

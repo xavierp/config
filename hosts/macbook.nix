@@ -35,6 +35,7 @@
       "font-fira-code"
       "gcloud-cli"
       "ghostty"
+      "kitty"
       "gimp"
       "google-chrome"
       "jellyfin-media-player"

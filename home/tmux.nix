@@ -44,6 +44,7 @@
       # True color support
       set -ag terminal-overrides ",xterm-256color:RGB"
       set -ag terminal-overrides ",ghostty:RGB"
+      set -ag terminal-overrides ",xterm-kitty:RGB"
 
       # Split panes with intuitive keys
       bind v split-window -h -c "#{pane_current_path}"
@@ -54,6 +55,7 @@
 
       # New window keeps current path
       bind n new-window -c "#{pane_current_path}"
+      bind N next-window
       unbind c
 
       # Fuzzy session switcher (create or switch)
