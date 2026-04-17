@@ -53,15 +53,15 @@
     keybind = super+shift+s=text:\x00s
     keybind = super+f=text:\x00f
     keybind = super+n=text:\x00:new-session\x0a
-    keybind = super+1=text:\x00\x31
-    keybind = super+2=text:\x00\x32
-    keybind = super+3=text:\x00\x33
-    keybind = super+4=text:\x00\x34
-    keybind = super+5=text:\x00\x35
-    keybind = super+6=text:\x00\x36
-    keybind = super+7=text:\x00\x37
-    keybind = super+8=text:\x00\x38
-    keybind = super+9=text:\x00\x39
+    keybind = super+digit_1=text:\x00\x31
+    keybind = super+digit_2=text:\x00\x32
+    keybind = super+digit_3=text:\x00\x33
+    keybind = super+digit_4=text:\x00\x34
+    keybind = super+digit_5=text:\x00\x35
+    keybind = super+digit_6=text:\x00\x36
+    keybind = super+digit_7=text:\x00\x37
+    keybind = super+digit_8=text:\x00\x38
+    keybind = super+digit_9=text:\x00\x39
     keybind = super+[=text:\x00p
     keybind = super+]=text:\x00\x4e
 
