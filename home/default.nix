@@ -10,7 +10,6 @@
     ./tmux.nix
     ./neovim.nix
     ./aerospace.nix
-    ./kitty.nix
     ./mise.nix
   ];
 
