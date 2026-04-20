@@ -22,5 +22,9 @@
     source = ../files/scripts/tmux-sessionizer;
     executable = true;
   };
+  home.file.".local/bin/tmux-url-picker" = {
+    source = ../files/scripts/tmux-url-picker;
+    executable = true;
+  };
 
 }

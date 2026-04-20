@@ -38,6 +38,9 @@ config/
 ## Key commands
 
 ```bash
+# Validate build after every modification (no sudo, always run this)
+darwin-rebuild build --flake ~/src/config#macbook
+
 # Rebuild system after changes (sudo required)
 sudo darwin-rebuild switch --flake ~/src/config#macbook
 

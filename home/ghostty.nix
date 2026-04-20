@@ -65,6 +65,12 @@
     keybind = super+[=text:\x00p
     keybind = super+]=text:\x00\x4e
 
+    # Open URLs from tmux pane with fzf (prefix + u)
+    keybind = super+u=text:\x00u
+
+    # Reload tmux config (prefix + R)
+    keybind = super+shift+r=text:\x00R
+
     # Clickable links
     link-url = true
   '';

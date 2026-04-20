@@ -41,6 +41,11 @@
     ];
 
     extraConfig = ''
+      # Auto-renumber windows on close
+      set -g renumber-windows on
+
+      set -g allow-passthrough on
+
       # True color support
       set -ag terminal-overrides ",xterm-256color:RGB"
       set -ag terminal-overrides ",ghostty:RGB"
@@ -66,8 +71,12 @@
       bind -r K resize-pane -U 5
       bind -r L resize-pane -R 5
 
+      # Open URLs from pane with fzf
+      bind u run-shell -b "~/.local/bin/tmux-url-picker"
+
       # Quick reload
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded"
+      bind R source-file ~/.config/tmux/tmux.conf \; display "Config reloaded"
 
       # Vi copy mode
       bind -T copy-mode-vi v send-keys -X begin-selection
