@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
-urls=$(tmux capture-pane -J -p | grep -oE 'https?://[^ >)]+' | sort -u)
+pane_id="$1"
+urls=$(tmux capture-pane -t "$pane_id" -J -p | grep -oE 'https?://[^ >)]+' | sort -u)
 
 if [[ -z "$urls" ]]; then
   tmux display-message "No URLs found"
   exit 0
 fi
 
-echo "$urls" | fzf-tmux -p 80%,40% --multi --bind 'enter:execute-silent(open {})+abort'
+selected=$(echo "$urls" | fzf --multi)
+[[ -n "$selected" ]] && echo "$selected" | xargs open
+exit 0

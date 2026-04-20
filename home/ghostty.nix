@@ -46,13 +46,12 @@
     keybind = super+k=text:\x0b
     keybind = super+l=text:\x0c
 
-    # Super → tmux operations (prefix is Ctrl+Space = \x00)
+    # Super → tmux prefix (\x00 = Ctrl+Space)
+    # Windows
     keybind = super+t=text:\x00n
+    keybind = super+shift+t=text:\x00:new-session\x0a
     keybind = super+w=text:\x00x
-    keybind = super+s=text:\x00v
-    keybind = super+shift+s=text:\x00s
-    keybind = super+f=text:\x00f
-    keybind = super+n=text:\x00:new-session\x0a
+    keybind = super+shift+w=text:\x00&
     keybind = super+digit_1=text:\x00\x31
     keybind = super+digit_2=text:\x00\x32
     keybind = super+digit_3=text:\x00\x33
@@ -64,12 +63,28 @@
     keybind = super+digit_9=text:\x00\x39
     keybind = super+[=text:\x00p
     keybind = super+]=text:\x00\x4e
+    keybind = super+comma=text:\x00,
 
-    # Open URLs from tmux pane with fzf (prefix + u)
-    keybind = super+u=text:\x00u
+    # Panes
+    keybind = super+s=text:\x00v
+    keybind = super+shift+s=text:\x00s
+    keybind = super+shift+left_bracket=text:\x00\x7b
+    keybind = super+shift+right_bracket=text:\x00\x7d
+    keybind = super+o=text:\x00o
+    keybind = super+semicolon=text:\x00\x3b
+    keybind = super+z=text:\x00z
+    keybind = super+q=text:\x00q
+    keybind = super+shift+h=text:\x00H
+    keybind = super+shift+j=text:\x00J
+    keybind = super+shift+k=text:\x00K
+    keybind = super+shift+l=text:\x00L
 
-    # Reload tmux config (prefix + R)
+    # Sessions & navigation
+    keybind = super+f=text:\x00f
+    keybind = super+d=text:\x00d
     keybind = super+shift+r=text:\x00R
+    keybind = super+space=text:\x00\x20
+    keybind = super+shift+colon=text:\x00:
 
     # Clickable links
     link-url = true

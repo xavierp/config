@@ -71,8 +71,6 @@
       bind -r K resize-pane -U 5
       bind -r L resize-pane -R 5
 
-      # Open URLs from pane with fzf
-      bind u run-shell -b "~/.local/bin/tmux-url-picker"
 
       # Quick reload
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded"
