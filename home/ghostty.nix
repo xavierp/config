@@ -6,7 +6,7 @@
     theme = nord
 
     # Font
-    font-family = JetBrainsMono Nerd Font
+    font-family = FiraCode Nerd Font
     font-size = 12
     font-feature = calt
     font-feature = liga
@@ -63,15 +63,15 @@
     keybind = super+digit_9=text:\x00\x39
     keybind = super+[=text:\x00p
     keybind = super+]=text:\x00\x4e
-    keybind = super+comma=text:\x00,
+    keybind = super+,=text:\x00,
 
     # Panes
     keybind = super+s=text:\x00v
     keybind = super+shift+s=text:\x00s
-    keybind = super+shift+left_bracket=text:\x00\x7b
-    keybind = super+shift+right_bracket=text:\x00\x7d
+    keybind = super+shift+[=text:\x00\x7b
+    keybind = super+shift+]=text:\x00\x7d
     keybind = super+o=text:\x00o
-    keybind = super+semicolon=text:\x00\x3b
+    keybind = super+;=text:\x00\x3b
     keybind = super+z=text:\x00z
     keybind = super+q=text:\x00q
     keybind = super+shift+h=text:\x00H
@@ -84,7 +84,7 @@
     keybind = super+d=text:\x00d
     keybind = super+shift+r=text:\x00R
     keybind = super+space=text:\x00\x20
-    keybind = super+shift+colon=text:\x00:
+    keybind = super+shift+;=text:\x00:
 
     # Clickable links
     link-url = true

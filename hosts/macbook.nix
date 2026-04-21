@@ -32,7 +32,7 @@
       "discord"
       "docker-desktop"
       "firefox"
-      "font-fira-code"
+      "font-fira-code-nerd-font"
       "gcloud-cli"
       "ghostty"
       "gimp"
