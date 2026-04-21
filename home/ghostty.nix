@@ -17,7 +17,7 @@
     window-padding-x = 10
     window-padding-y = 10
     window-padding-balance = true
-    window-decoration = true
+    window-decoration = false
     background-opacity = 0.95
 
     # Cursor
