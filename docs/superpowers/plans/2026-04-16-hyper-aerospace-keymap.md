@@ -1,6 +1,6 @@
 # Hyper Key + Aerospace + Unified Keymap Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Replace the fragile CapsLock→Ctrl+Space hack with a proper Hyper key, add Aerospace TWM with Left Alt bindings, and add Cmd-based tmux shortcuts in Ghostty.
 
@@ -17,7 +17,7 @@
 **Files:**
 - Modify: `files/karabiner/karabiner.json`
 
-- [ ] **Step 1: Replace karabiner.json with new rules**
+- [x] **Step 1: Replace karabiner.json with new rules**
 
 Replace the entire content of `files/karabiner/karabiner.json` with:
 
@@ -79,12 +79,12 @@ Replace the entire content of `files/karabiner/karabiner.json` with:
 }
 ```
 
-- [ ] **Step 2: Verify JSON is valid**
+- [x] **Step 2: Verify JSON is valid**
 
 Run: `cat files/karabiner/karabiner.json | jq .`
 Expected: valid JSON output, no parse errors.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add files/karabiner/karabiner.json
@@ -98,7 +98,7 @@ git commit -m "feat: capslock hyper key + left option ctrl+option remap"
 **Files:**
 - Create: `files/aerospace/aerospace.toml`
 
-- [ ] **Step 1: Create the aerospace config directory and file**
+- [x] **Step 1: Create the aerospace config directory and file**
 
 Run: `mkdir -p files/aerospace`
 
@@ -191,7 +191,7 @@ if.app-id = 'com.spotify.client'
 run = 'move-node-to-workspace M'
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add files/aerospace/aerospace.toml
@@ -207,7 +207,7 @@ git commit -m "feat: add aerospace TWM config with ctrl+alt bindings"
 - Modify: `home/default.nix`
 - Modify: `hosts/macbook.nix`
 
-- [ ] **Step 1: Create home/aerospace.nix**
+- [x] **Step 1: Create home/aerospace.nix**
 
 ```nix
 { ... }:
@@ -217,7 +217,7 @@ git commit -m "feat: add aerospace TWM config with ctrl+alt bindings"
 }
 ```
 
-- [ ] **Step 2: Add aerospace import to home/default.nix**
+- [x] **Step 2: Add aerospace import to home/default.nix**
 
 Add `./aerospace.nix` to the imports list in `home/default.nix`:
 
@@ -234,7 +234,7 @@ Add `./aerospace.nix` to the imports list in `home/default.nix`:
   ];
 ```
 
-- [ ] **Step 3: Add aerospace to casks in hosts/macbook.nix**
+- [x] **Step 3: Add aerospace to casks in hosts/macbook.nix**
 
 Add `"aerospace"` to the `casks` list in `hosts/macbook.nix`, maintaining alphabetical order (insert before `"alacritty"`):
 
@@ -245,7 +245,7 @@ Add `"aerospace"` to the `casks` list in `hosts/macbook.nix`, maintaining alphab
       "alacritty"
 ```
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add home/aerospace.nix home/default.nix hosts/macbook.nix
@@ -259,7 +259,7 @@ git commit -m "feat: add aerospace nix module and cask"
 **Files:**
 - Modify: `home/ghostty.nix`
 
-- [ ] **Step 1: Add Cmd keybinds to ghostty.nix**
+- [x] **Step 1: Add Cmd keybinds to ghostty.nix**
 
 In `home/ghostty.nix`, add the following keybinds after the existing `keybind = ctrl+space=unbind` line:
 
@@ -288,7 +288,7 @@ In `home/ghostty.nix`, add the following keybinds after the existing `keybind = 
     keybind = cmd+9=text:\x009
 ```
 
-- [ ] **Step 2: Verify the full ghostty.nix looks correct**
+- [x] **Step 2: Verify the full ghostty.nix looks correct**
 
 The complete file should be:
 
@@ -364,7 +364,7 @@ The complete file should be:
 }
 ```
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add home/ghostty.nix
@@ -377,70 +377,70 @@ git commit -m "feat: add cmd keybinds for tmux pane nav and operations"
 
 **Files:** none (verification only)
 
-- [ ] **Step 1: Git add all new files (flake requirement)**
+- [x] **Step 1: Git add all new files (flake requirement)**
 
 Run: `git add -A`
 
 New files must be tracked for Nix flakes to see them.
 
-- [ ] **Step 2: Rebuild**
+- [x] **Step 2: Rebuild**
 
 Run: `sudo darwin-rebuild switch --flake ~/src/config#macbook`
 
 Expected: build succeeds with no errors.
 
-- [ ] **Step 3: Verify Karabiner config was deployed**
+- [x] **Step 3: Verify Karabiner config was deployed**
 
 Run: `cat ~/.config/karabiner/karabiner.json | jq '.profiles[0].complex_modifications.rules | length'`
 
 Expected: `2` (Hyper rule + left_option rule)
 
-- [ ] **Step 4: Verify Aerospace config was deployed**
+- [x] **Step 4: Verify Aerospace config was deployed**
 
 Run: `cat ~/.config/aerospace/aerospace.toml | head -5`
 
 Expected: shows the Aerospace config header with `start-at-login = true`.
 
-- [ ] **Step 5: Verify Ghostty config has Cmd keybinds**
+- [x] **Step 5: Verify Ghostty config has Cmd keybinds**
 
 Run: `grep "cmd+" ~/.config/ghostty/config | wc -l`
 
 Expected: `16` or more lines (4 hjkl + 3 operations + 9 window numbers)
 
-- [ ] **Step 6: Open Aerospace and grant accessibility permissions**
+- [x] **Step 6: Open Aerospace and grant accessibility permissions**
 
 Aerospace needs macOS accessibility permissions on first launch. Open it from Applications or Spotlight, then go to System Settings → Privacy & Security → Accessibility → enable Aerospace.
 
-- [ ] **Step 7: Manual testing checklist**
+- [x] **Step 7: Manual testing checklist**
 
 Test each layer independently:
 
 **Karabiner:**
-- [ ] Press CapsLock — should do nothing visible (Hyper with no bindings)
-- [ ] Press Right Alt + E then E — should produce é (accent works)
-- [ ] Press Left Alt + H — should trigger Aerospace focus left (if windows available)
+- [x] Press CapsLock — should do nothing visible (Hyper with no bindings)
+- [x] Press Right Alt + E then E — should produce é (accent works)
+- [x] Press Left Alt + H — should trigger Aerospace focus left (if windows available)
 
 **Aerospace:**
-- [ ] Left Alt + 1/2/3 — switch workspaces
-- [ ] Left Alt + Shift + H/J/K/L — move windows
-- [ ] Left Alt + F — fullscreen toggle
-- [ ] Left Alt + Enter — opens Ghostty
+- [x] Left Alt + 1/2/3 — switch workspaces
+- [x] Left Alt + Shift + H/J/K/L — move windows
+- [x] Left Alt + F — fullscreen toggle
+- [x] Left Alt + Enter — opens Ghostty
 
 **Ghostty → tmux:**
-- [ ] Cmd + H/J/K/L — navigate tmux panes / neovim splits seamlessly
-- [ ] Cmd + T — new tmux window
-- [ ] Cmd + W — close tmux pane
-- [ ] Cmd + S — vertical split
-- [ ] Cmd + Shift + S — horizontal split
-- [ ] Cmd + F — session switcher
-- [ ] Cmd + 1-9 — switch tmux windows
-- [ ] Cmd + C/V/Q — still work as macOS defaults
+- [x] Cmd + H/J/K/L — navigate tmux panes / neovim splits seamlessly
+- [x] Cmd + T — new tmux window
+- [x] Cmd + W — close tmux pane
+- [x] Cmd + S — vertical split
+- [x] Cmd + Shift + S — horizontal split
+- [x] Cmd + F — session switcher
+- [x] Cmd + 1-9 — switch tmux windows
+- [x] Cmd + C/V/Q — still work as macOS defaults
 
 **Preserved shortcuts:**
-- [ ] Cmd + Space — Raycast still works
-- [ ] Cmd + Shift + Space — 1Password still works
+- [x] Cmd + Space — Raycast still works
+- [x] Cmd + Shift + Space — 1Password still works
 
-- [ ] **Step 8: Final commit**
+- [x] **Step 8: Final commit**
 
 ```bash
 git add -A
@@ -456,7 +456,7 @@ git push
 - Modify: `CLAUDE.md`
 - Modify: `docs/cheatsheet.md`
 
-- [ ] **Step 1: Update CLAUDE.md critical quirks**
+- [x] **Step 1: Update CLAUDE.md critical quirks**
 
 Add to the "Critical quirks" section in `CLAUDE.md`:
 
@@ -469,11 +469,11 @@ Add to the "Critical quirks" section in `CLAUDE.md`:
 
 Remove or update the existing CapsLock quirk about Ctrl+Space.
 
-- [ ] **Step 2: Update docs/cheatsheet.md**
+- [x] **Step 2: Update docs/cheatsheet.md**
 
 Add a keymap reference section if not present, covering all four layers (Aerospace, Ghostty→tmux, neovim, Hyper).
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add CLAUDE.md docs/cheatsheet.md

@@ -1,6 +1,6 @@
 # Tmux + LazyVim Phase 2 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Set up tmux as primary window manager and LazyVim as IDE replacement, with seamless Ctrl+hjkl navigation between tmux panes and neovim splits.
 
@@ -43,7 +43,7 @@ config/
 - Create: `home/tmux.nix`
 - Modify: `home/default.nix`
 
-- [ ] **Step 1: Create home/tmux.nix**
+- [x] **Step 1: Create home/tmux.nix**
 
 ```nix
 { pkgs, ... }:
@@ -125,7 +125,7 @@ config/
 }
 ```
 
-- [ ] **Step 2: Add tmux import to home/default.nix**
+- [x] **Step 2: Add tmux import to home/default.nix**
 
 Add `./tmux.nix` to the imports list in `home/default.nix`:
 
@@ -139,7 +139,7 @@ Add `./tmux.nix` to the imports list in `home/default.nix`:
   ];
 ```
 
-- [ ] **Step 3: Stage, rebuild, and verify**
+- [x] **Step 3: Stage, rebuild, and verify**
 
 ```bash
 git add home/tmux.nix home/default.nix
@@ -162,7 +162,7 @@ Expected:
 
 Run: `tmux kill-session -t test`
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add home/tmux.nix home/default.nix
@@ -182,7 +182,7 @@ for session persistence."
 - Modify: `home/default.nix`
 - Modify: `home/shell.nix` (remove neovim from packages, it moves to neovim.nix)
 
-- [ ] **Step 1: Create home/neovim.nix**
+- [x] **Step 1: Create home/neovim.nix**
 
 ```nix
 { pkgs, ... }:
@@ -227,7 +227,7 @@ for session persistence."
 }
 ```
 
-- [ ] **Step 2: Remove neovim from home/shell.nix packages**
+- [x] **Step 2: Remove neovim from home/shell.nix packages**
 
 In `home/shell.nix`, remove `neovim` from the `home.packages` list (it's now managed by `programs.neovim` in neovim.nix):
 
@@ -236,7 +236,7 @@ Remove this line from the `home.packages` block:
     neovim
 ```
 
-- [ ] **Step 3: Add neovim import to home/default.nix**
+- [x] **Step 3: Add neovim import to home/default.nix**
 
 Add `./neovim.nix` to the imports list:
 
@@ -251,7 +251,7 @@ Add `./neovim.nix` to the imports list:
   ];
 ```
 
-- [ ] **Step 4: Stage, rebuild, and verify**
+- [x] **Step 4: Stage, rebuild, and verify**
 
 ```bash
 git add home/neovim.nix home/neovim.nix home/default.nix home/shell.nix
@@ -272,7 +272,7 @@ nvim --version
 
 All should return version numbers without errors.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add home/neovim.nix home/default.nix home/shell.nix
@@ -294,7 +294,7 @@ git commit -m "feat: add neovim with LSP servers for ruby, typescript, terraform
 - Create: `files/nvim/lua/plugins/overrides.lua`
 - Modify: `home/neovim.nix` (add xdg.configFile symlinks)
 
-- [ ] **Step 1: Create files/nvim/init.lua**
+- [x] **Step 1: Create files/nvim/init.lua**
 
 ```lua
 -- Bootstrap lazy.nvim
@@ -356,7 +356,7 @@ require("lazy").setup({
 })
 ```
 
-- [ ] **Step 2: Create files/nvim/lazyvim.json**
+- [x] **Step 2: Create files/nvim/lazyvim.json**
 
 ```json
 {
@@ -377,7 +377,7 @@ require("lazy").setup({
 }
 ```
 
-- [ ] **Step 3: Create files/nvim/lua/config/options.lua**
+- [x] **Step 3: Create files/nvim/lua/config/options.lua**
 
 ```lua
 -- Options are automatically loaded before lazy.nvim startup
@@ -399,7 +399,7 @@ vim.opt.swapfile = false
 vim.g.lazyvim_picker = "telescope"
 ```
 
-- [ ] **Step 4: Create files/nvim/lua/config/keymaps.lua**
+- [x] **Step 4: Create files/nvim/lua/config/keymaps.lua**
 
 ```lua
 -- Keymaps are automatically loaded on the VeryLazy event
@@ -410,7 +410,7 @@ vim.g.lazyvim_picker = "telescope"
 -- Space: leader key (LazyVim default)
 ```
 
-- [ ] **Step 5: Create files/nvim/lua/config/autocmds.lua**
+- [x] **Step 5: Create files/nvim/lua/config/autocmds.lua**
 
 ```lua
 -- Autocmds are automatically loaded on the VeryLazy event
@@ -419,7 +419,7 @@ vim.g.lazyvim_picker = "telescope"
 -- Nothing custom yet
 ```
 
-- [ ] **Step 6: Create files/nvim/lua/plugins/tmux-navigator.lua**
+- [x] **Step 6: Create files/nvim/lua/plugins/tmux-navigator.lua**
 
 ```lua
 return {
@@ -442,7 +442,7 @@ return {
 }
 ```
 
-- [ ] **Step 7: Create files/nvim/lua/plugins/theme.lua**
+- [x] **Step 7: Create files/nvim/lua/plugins/theme.lua**
 
 ```lua
 return {
@@ -462,7 +462,7 @@ return {
 }
 ```
 
-- [ ] **Step 8: Create files/nvim/lua/plugins/overrides.lua**
+- [x] **Step 8: Create files/nvim/lua/plugins/overrides.lua**
 
 ```lua
 return {
@@ -472,7 +472,7 @@ return {
 }
 ```
 
-- [ ] **Step 9: Add nvim config symlink to home/neovim.nix**
+- [x] **Step 9: Add nvim config symlink to home/neovim.nix**
 
 Replace the contents of `home/neovim.nix` with:
 
@@ -525,7 +525,7 @@ Replace the contents of `home/neovim.nix` with:
 }
 ```
 
-- [ ] **Step 10: Stage, rebuild, and verify**
+- [x] **Step 10: Stage, rebuild, and verify**
 
 ```bash
 git add files/nvim/ home/neovim.nix
@@ -551,7 +551,7 @@ Test vim-tmux-navigator inside tmux:
 3. `Ctrl+Space, v` to split tmux pane
 4. `Ctrl+h` and `Ctrl+l` should move between the nvim window and the tmux pane
 
-- [ ] **Step 11: Commit**
+- [x] **Step 11: Commit**
 
 ```bash
 git add files/nvim/ home/neovim.nix
@@ -569,7 +569,7 @@ vim-tmux-navigator for seamless Ctrl+hjkl pane navigation."
 **Files:**
 - Modify: `docs/cheatsheet.md`
 
-- [ ] **Step 1: Add tmux and neovim sections to docs/cheatsheet.md**
+- [x] **Step 1: Add tmux and neovim sections to docs/cheatsheet.md**
 
 Append the following to the end of `docs/cheatsheet.md`:
 
@@ -681,7 +681,7 @@ Append the following to the end of `docs/cheatsheet.md`:
 | `Ctrl+h/j/k/l` | Naviguer entre splits/panes tmux |
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add docs/cheatsheet.md
@@ -694,13 +694,13 @@ git commit -m "docs: add tmux and neovim shortcuts to cheatsheet"
 
 **Files:** None
 
-- [ ] **Step 1: Push all changes**
+- [x] **Step 1: Push all changes**
 
 ```bash
 git push origin feat/nix-darwin-bootstrap
 ```
 
-- [ ] **Step 2: Verify in tmux + nvim together**
+- [x] **Step 2: Verify in tmux + nvim together**
 
 Open Ghostty, start tmux:
 

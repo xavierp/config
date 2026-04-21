@@ -1,6 +1,6 @@
 # Nix Dotfiles Phase 1 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Set up nix-darwin + home-manager on macOS to declaratively manage shell, CLI tools, git, ghostty, and Claude Code configs.
 
@@ -39,7 +39,7 @@ config/
 
 **Files:** None (system install)
 
-- [ ] **Step 1: Install Nix via Determinate Systems installer**
+- [x] **Step 1: Install Nix via Determinate Systems installer**
 
 Run in a separate terminal (interactive — requires sudo):
 
@@ -49,7 +49,7 @@ curl -fsSL https://install.determinate.systems/nix | sh -s -- install
 
 Follow the prompts. This installs Determinate Nix with flakes enabled by default.
 
-- [ ] **Step 2: Open a new terminal and verify Nix works**
+- [x] **Step 2: Open a new terminal and verify Nix works**
 
 Run: `nix --version`
 Expected: `nix (Determinate Nix) 2.x.x` (any recent version)
@@ -57,7 +57,7 @@ Expected: `nix (Determinate Nix) 2.x.x` (any recent version)
 Run: `nix run nixpkgs#hello`
 Expected: `Hello, world!`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 No file changes — this is a system install. Just verify it works and move on.
 
@@ -70,7 +70,7 @@ No file changes — this is a system install. Just verify it works and move on.
 - Create: `hosts/macbook.nix`
 - Create: `home/default.nix`
 
-- [ ] **Step 1: Create flake.nix**
+- [x] **Step 1: Create flake.nix**
 
 ```nix
 {
@@ -105,7 +105,7 @@ No file changes — this is a system install. Just verify it works and move on.
 }
 ```
 
-- [ ] **Step 2: Create hosts/macbook.nix (minimal)**
+- [x] **Step 2: Create hosts/macbook.nix (minimal)**
 
 ```nix
 { pkgs, ... }:
@@ -134,7 +134,7 @@ No file changes — this is a system install. Just verify it works and move on.
 }
 ```
 
-- [ ] **Step 3: Create home/default.nix (minimal)**
+- [x] **Step 3: Create home/default.nix (minimal)**
 
 ```nix
 { pkgs, ... }:
@@ -146,7 +146,7 @@ No file changes — this is a system install. Just verify it works and move on.
 }
 ```
 
-- [ ] **Step 4: Build and activate nix-darwin for the first time**
+- [x] **Step 4: Build and activate nix-darwin for the first time**
 
 Run from the repo root:
 
@@ -158,7 +158,7 @@ Note: the first run uses `nix run nix-darwin --` because `darwin-rebuild` is not
 
 Expected: build succeeds, no errors. May ask for sudo password.
 
-- [ ] **Step 5: Verify darwin-rebuild is now available**
+- [x] **Step 5: Verify darwin-rebuild is now available**
 
 Open a new terminal.
 
@@ -168,7 +168,7 @@ Expected: help output from darwin-rebuild
 Run: `which darwin-rebuild`
 Expected: a path inside `/run/current-system/` or similar
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add flake.nix flake.lock hosts/macbook.nix home/default.nix
@@ -183,7 +183,7 @@ git commit -m "feat: bootstrap nix-darwin with home-manager"
 - Create: `home/shell.nix`
 - Modify: `home/default.nix`
 
-- [ ] **Step 1: Create home/shell.nix**
+- [x] **Step 1: Create home/shell.nix**
 
 ```nix
 { pkgs, ... }:
@@ -218,7 +218,7 @@ git commit -m "feat: bootstrap nix-darwin with home-manager"
 }
 ```
 
-- [ ] **Step 2: Import shell.nix in home/default.nix**
+- [x] **Step 2: Import shell.nix in home/default.nix**
 
 Replace the contents of `home/default.nix` with:
 
@@ -236,7 +236,7 @@ Replace the contents of `home/default.nix` with:
 }
 ```
 
-- [ ] **Step 3: Rebuild and verify**
+- [x] **Step 3: Rebuild and verify**
 
 Run: `darwin-rebuild switch --flake .`
 Expected: build succeeds
@@ -249,7 +249,7 @@ Expected: `1000000000`
 Run: `setopt | grep nomatch`
 Expected: no output (NO_NOMATCH is set, so `nomatch` should NOT appear)
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add home/shell.nix home/default.nix
@@ -263,7 +263,7 @@ git commit -m "feat: add zsh configuration with autosuggestions and syntax highl
 **Files:**
 - Modify: `home/shell.nix`
 
-- [ ] **Step 1: Add packages and tool integrations to home/shell.nix**
+- [x] **Step 1: Add packages and tool integrations to home/shell.nix**
 
 Replace the contents of `home/shell.nix` with:
 
@@ -414,7 +414,7 @@ Replace the contents of `home/shell.nix` with:
 }
 ```
 
-- [ ] **Step 2: Rebuild and verify tools**
+- [x] **Step 2: Rebuild and verify tools**
 
 Run: `darwin-rebuild switch --flake .`
 Expected: build succeeds (may take a while downloading packages first time)
@@ -447,7 +447,7 @@ Test aliases:
 - `ls` — should show icons (eza)
 - `ll` — should show detailed listing with git status
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add home/shell.nix
@@ -462,7 +462,7 @@ git commit -m "feat: add modern CLI tools (zoxide, fzf, bat, eza, ripgrep, fd, d
 - Create: `home/git.nix`
 - Modify: `home/default.nix`
 
-- [ ] **Step 1: Create home/git.nix**
+- [x] **Step 1: Create home/git.nix**
 
 ```nix
 { pkgs, ... }:
@@ -571,7 +571,7 @@ git commit -m "feat: add modern CLI tools (zoxide, fzf, bat, eza, ripgrep, fd, d
 }
 ```
 
-- [ ] **Step 2: Add import in home/default.nix**
+- [x] **Step 2: Add import in home/default.nix**
 
 Replace the contents of `home/default.nix` with:
 
@@ -590,7 +590,7 @@ Replace the contents of `home/default.nix` with:
 }
 ```
 
-- [ ] **Step 3: Rebuild and verify**
+- [x] **Step 3: Rebuild and verify**
 
 Run: `darwin-rebuild switch --flake .`
 Expected: build succeeds
@@ -606,7 +606,7 @@ Expected: the log alias format string
 
 Run: `git log --oneline -3` in any repo with history — verify it still works normally.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add home/git.nix home/default.nix
@@ -620,7 +620,7 @@ git commit -m "feat: add declarative git configuration with signing and aliases"
 **Files:**
 - Modify: `hosts/macbook.nix`
 
-- [ ] **Step 1: Add homebrew casks to hosts/macbook.nix**
+- [x] **Step 1: Add homebrew casks to hosts/macbook.nix**
 
 Replace the contents of `hosts/macbook.nix` with:
 
@@ -701,7 +701,7 @@ Replace the contents of `hosts/macbook.nix` with:
 }
 ```
 
-- [ ] **Step 2: Rebuild and verify**
+- [x] **Step 2: Rebuild and verify**
 
 Run: `darwin-rebuild switch --flake .`
 Expected: build succeeds. Homebrew may take a while the first time as it reconciles the cask list. You should NOT see any casks being uninstalled that you still use — if you do, abort (`Ctrl+C`) and check the list.
@@ -711,7 +711,7 @@ Verify Caps Lock is remapped: press Caps Lock + C in terminal — should act as 
 Run: `brew list --cask | wc -l`
 Expected: count matching the cask list above (approximately 29)
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add hosts/macbook.nix
@@ -726,7 +726,7 @@ git commit -m "feat: add homebrew casks declaration and caps lock remap"
 - Create: `home/ghostty.nix`
 - Modify: `home/default.nix`
 
-- [ ] **Step 1: Create home/ghostty.nix**
+- [x] **Step 1: Create home/ghostty.nix**
 
 ```nix
 { ... }:
@@ -771,7 +771,7 @@ git commit -m "feat: add homebrew casks declaration and caps lock remap"
 }
 ```
 
-- [ ] **Step 2: Add import in home/default.nix**
+- [x] **Step 2: Add import in home/default.nix**
 
 Replace the contents of `home/default.nix` with:
 
@@ -791,7 +791,7 @@ Replace the contents of `home/default.nix` with:
 }
 ```
 
-- [ ] **Step 3: Rebuild and verify**
+- [x] **Step 3: Rebuild and verify**
 
 Run: `darwin-rebuild switch --flake .`
 Expected: build succeeds
@@ -801,7 +801,7 @@ Expected: shows `# Theme` and `theme = nord` — the file is now managed by Nix
 
 Open a new Ghostty window — should look identical to before (same theme, font, opacity).
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add home/ghostty.nix home/default.nix
@@ -818,14 +818,14 @@ git commit -m "feat: add ghostty terminal configuration"
 - Create: `home/claude.nix`
 - Modify: `home/default.nix`
 
-- [ ] **Step 1: Copy current Claude Code configs to repo**
+- [x] **Step 1: Copy current Claude Code configs to repo**
 
 ```bash
 cp ~/.claude/settings.json files/claude/settings.json
 cp ~/.claude/mcp.json files/claude/mcp.json
 ```
 
-- [ ] **Step 2: Create home/claude.nix**
+- [x] **Step 2: Create home/claude.nix**
 
 ```nix
 { ... }:
@@ -839,7 +839,7 @@ in
 }
 ```
 
-- [ ] **Step 3: Add import in home/default.nix**
+- [x] **Step 3: Add import in home/default.nix**
 
 Replace the contents of `home/default.nix` with:
 
@@ -860,7 +860,7 @@ Replace the contents of `home/default.nix` with:
 }
 ```
 
-- [ ] **Step 4: Rebuild and verify**
+- [x] **Step 4: Rebuild and verify**
 
 Run: `darwin-rebuild switch --flake .`
 Expected: build succeeds
@@ -879,7 +879,7 @@ mv ~/.claude/mcp.json ~/.claude/mcp.json.bak
 darwin-rebuild switch --flake .
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 mkdir -p files/claude
@@ -894,7 +894,7 @@ git commit -m "feat: add Claude Code configuration management"
 **Files:**
 - Create: `docs/cheatsheet.md`
 
-- [ ] **Step 1: Create docs/cheatsheet.md**
+- [x] **Step 1: Create docs/cheatsheet.md**
 
 ```markdown
 # Cheatsheet — Modern CLI & Nix
@@ -978,7 +978,7 @@ nix-collect-garbage -d                         # nettoyer le nix store manuellem
 | `Ctrl+Space` | Prefix tmux (phase 2) |
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add docs/cheatsheet.md
@@ -994,7 +994,7 @@ git commit -m "docs: add CLI tools and shortcuts cheatsheet"
 - Modify: `~/.zprofile` (backup)
 - Modify: `~/.config/starship.toml` (backup)
 
-- [ ] **Step 1: Backup old dotfiles**
+- [x] **Step 1: Backup old dotfiles**
 
 ```bash
 mkdir -p ~/dotfiles-backup
@@ -1004,7 +1004,7 @@ cp ~/.config/starship.toml ~/dotfiles-backup/starship.toml.bak 2>/dev/null
 cp ~/.gitconfig ~/dotfiles-backup/.gitconfig.bak 2>/dev/null
 ```
 
-- [ ] **Step 2: Remove old configs that conflict with home-manager**
+- [x] **Step 2: Remove old configs that conflict with home-manager**
 
 Home-manager manages `~/.zshrc`, `~/.config/starship.toml`, and `~/.config/git/config` via symlinks. If the old files still exist as regular files, home-manager will have warned during rebuild. Remove them only after verifying the Nix-managed versions work:
 
@@ -1015,7 +1015,7 @@ rm ~/.config/starship.toml 2>/dev/null  # home-manager manages this now
 
 Keep `~/.zprofile` for now — home-manager doesn't fully manage it and brew/rbenv/nvm may still need entries there. Keep `~/.gitconfig` only if home-manager didn't take it over (check if it's a symlink: `ls -la ~/.gitconfig`).
 
-- [ ] **Step 3: Rebuild one last time and verify everything**
+- [x] **Step 3: Rebuild one last time and verify everything**
 
 Run: `darwin-rebuild switch --flake .`
 Expected: clean build, no warnings about existing files
@@ -1028,7 +1028,7 @@ Open a new terminal and verify:
 - `g s` works (git status)
 - Caps Lock acts as Ctrl
 
-- [ ] **Step 4: Push to GitHub**
+- [x] **Step 4: Push to GitHub**
 
 ```bash
 git push origin main

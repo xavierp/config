@@ -1,7 +1,7 @@
 # Design : Migration nvm/rbenv → mise
 
 **Date** : 2026-04-17
-**Statut** : approuvé
+**Statut** : done
 
 ## Contexte
 

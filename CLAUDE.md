@@ -77,6 +77,8 @@ nix flake update
 
 - Phase 1: done (Nix + shell + CLI tools + git + ghostty + claude configs)
 - Phase 2: done (tmux + LazyVim + LSP servers + vim-tmux-navigator)
-- Phase 3: in progress (Hyper key done, Ghostty keybinds done, Aerospace config ready but paused, Obsidian + server *arr planned)
-- Design spec: `docs/superpowers/specs/2026-04-10-nix-dotfiles-design.md`
+- Phase 3: done (Hyper key, Ghostty keybinds, Karabiner, Aerospace config ready but paused)
+- mise: done (replaced nvm/rbenv with mise via home-manager)
+- Next: Aerospace activation (needs macOS Spaces tuning), Obsidian + server *arr
+- Design specs: `docs/superpowers/specs/`
 - Plans: `docs/superpowers/plans/`
