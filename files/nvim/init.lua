@@ -22,7 +22,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim with LazyVim
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = {
+      news = { lazyvim = false, neovim = false },
+    }},
     -- Language extras
     { import = "lazyvim.plugins.extras.lang.ruby" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
