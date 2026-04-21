@@ -17,6 +17,9 @@
     watch
     gnused
 
+    # Session management
+    sesh
+
     # Dev tools
     awscli2
     terragrunt

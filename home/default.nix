@@ -17,11 +17,10 @@
 
   programs.home-manager.enable = true;
 
+  # Sesh (tmux session manager)
+  xdg.configFile."sesh/sesh.toml".source = ../files/sesh/sesh.toml;
+
   # Scripts
-  home.file.".local/bin/tmux-sessionizer" = {
-    source = ../files/scripts/tmux-sessionizer;
-    executable = true;
-  };
   home.file.".local/bin/tmux-url-picker" = {
     source = ../files/scripts/tmux-url-picker;
     executable = true;

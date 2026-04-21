@@ -65,8 +65,8 @@
       bind N next-window
       unbind c
 
-      # Fuzzy session switcher (create or switch)
-      bind f display-popup -E "~/.local/bin/tmux-sessionizer"
+      # Fuzzy session switcher (sesh + fzf)
+      bind f display-popup -E "sesh connect $(sesh list | fzf --reverse --prompt='session > ')"
 
       # Resize panes with Ctrl+hjkl (hold prefix)
       bind -r H resize-pane -L 5
