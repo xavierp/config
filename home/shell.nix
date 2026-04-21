@@ -43,9 +43,10 @@
     };
 
     initContent = ''
-      # Auto-attach to tmux session "main" (skip if already inside tmux)
+      # Auto-attach to tmux via sesh (skip if already inside tmux)
       if [[ -z "$TMUX" && "$TERM_PROGRAM" == "ghostty" ]]; then
-        exec tmux new-session -A -s main
+        selected=$(sesh list | fzf --reverse --prompt='session > ')
+        exec sesh connect "''${selected:-main}"
       fi
 
       # Fix zsh glob errors on *, ?, [
