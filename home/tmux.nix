@@ -41,6 +41,9 @@
     ];
 
     extraConfig = ''
+      # Status bar on top (avoids double-bar with neovim at bottom)
+      set -g status-position top
+
       # Auto-renumber windows on close
       set -g renumber-windows on
 
