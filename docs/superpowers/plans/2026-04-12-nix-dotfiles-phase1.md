@@ -1,5 +1,7 @@
 # Nix Dotfiles Phase 1 Implementation Plan
 
+> **Status: COMPLETE** — All tasks done. System bootstrapped with nix-darwin + home-manager, shell, git, ghostty, claude configs, and casks.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Set up nix-darwin + home-manager on macOS to declaratively manage shell, CLI tools, git, ghostty, and Claude Code configs.

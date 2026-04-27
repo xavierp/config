@@ -76,9 +76,10 @@ nix flake update
 ## Status
 
 - Phase 1: done (Nix + shell + CLI tools + git + ghostty + claude configs)
-- Phase 2: done (tmux + LazyVim + LSP servers + vim-tmux-navigator)
-- Phase 3: done (Hyper key, Ghostty keybinds, Karabiner, Aerospace config ready but paused)
+- Phase 2: done (tmux + LazyVim + LSP servers + vim-tmux-navigator, sesh session picker, catppuccin theme + pane borders)
+- Phase 3: done (Hyper key, Ghostty Cmd keybinds, Karabiner, Aerospace config ready but paused)
 - mise: done (replaced nvm/rbenv with mise via home-manager)
+- Post-plan polish: Fira Code font, catppuccin mocha neovim theme, tmux status bar top, ghostty title bar hidden, Linear cask
 - Next: Aerospace activation (needs macOS Spaces tuning), Obsidian + server *arr
 - Design specs: `docs/superpowers/specs/`
 - Plans: `docs/superpowers/plans/`

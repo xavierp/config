@@ -1,5 +1,7 @@
 # Hyper Key + Aerospace + Unified Keymap Implementation Plan
 
+> **Status: COMPLETE** — All tasks done. Hyper key (CapsLock), left Alt → Ctrl+Alt, Aerospace config ready (cask paused pending macOS Spaces tuning), Ghostty Cmd keybinds for tmux.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Replace the fragile CapsLock→Ctrl+Space hack with a proper Hyper key, add Aerospace TWM with Left Alt bindings, and add Cmd-based tmux shortcuts in Ghostty.

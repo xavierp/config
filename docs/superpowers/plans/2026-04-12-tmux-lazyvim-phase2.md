@@ -1,5 +1,7 @@
 # Tmux + LazyVim Phase 2 Implementation Plan
 
+> **Status: COMPLETE** — All tasks done. tmux with catppuccin + sesh, LazyVim with LSP via Nix, vim-tmux-navigator. Post-plan: pane borders, status bar top, catppuccin mocha neovim theme.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Set up tmux as primary window manager and LazyVim as IDE replacement, with seamless Ctrl+hjkl navigation between tmux panes and neovim splits.

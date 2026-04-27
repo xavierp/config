@@ -1,5 +1,7 @@
 # mise Version Manager Implementation Plan
 
+> **Status: COMPLETE** — All tasks done. mise replaces nvm/rbenv, manages node/ruby/python/terraform versions declaratively.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Replace nvm/rbenv with mise, managed declaratively via home-manager `programs.mise`.
