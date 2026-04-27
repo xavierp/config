@@ -18,10 +18,11 @@
     enable = true;
     onActivation = {
       autoUpdate = true;
-      cleanup = "none"; # TODO: switch to "zap" once cask list is verified
+      cleanup = "zap";
     };
     casks = [
       "1password"
+      "1password-cli"
       # "aerospace"  # TODO: re-enable once macOS Spaces settings are tuned
       "karabiner-elements"
       "alacritty"
@@ -30,6 +31,7 @@
       "dash"
       "datagrip"
       "discord"
+      "docker"
       "docker-desktop"
       "firefox"
       "font-fira-code-nerd-font"
