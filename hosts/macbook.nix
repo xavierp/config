@@ -58,6 +58,30 @@
     ];
   };
 
+  # macOS defaults
+  system.defaults.NSGlobalDomain = {
+    AppleShowAllExtensions = true;
+    NSAutomaticWindowAnimationsEnabled = false;
+    "com.apple.swipescrolldirection" = false;
+  };
+
+  system.defaults.finder = {
+    AppleShowAllFiles = true;
+    ShowPathbar = true;
+    FXPreferredViewStyle = "Nlsv";
+  };
+
+  system.defaults.dock = {
+    autohide = true;
+    autohide-time-modifier = 0.0;
+    launchanim = false;
+    mru-spaces = false;
+    show-recents = false;
+    show-process-indicators = true;
+    tilesize = 46;
+    expose-group-apps = true;
+  };
+
   # Required for nix-darwin
   system.primaryUser = "x";
   system.stateVersion = 6;
