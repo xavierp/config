@@ -86,6 +86,15 @@
       # Don't rename windows automatically
       set -g allow-rename off
 
+      # Active pane visibility
+      set -g pane-active-border-style "fg=#8caaee"
+      set -g pane-border-style "fg=#51576d"
+      set -g pane-border-lines heavy
+      set -g pane-border-status top
+      set -g pane-border-format " #{?pane_active,#[fg=#303446#,bg=#8caaee] #P: #{pane_current_command} ,#[fg=#c6d0f5#,bg=#414559] #P: #{pane_current_command} }"
+      set -g window-active-style "bg=#303446"
+      set -g window-style "bg=#292c3c"
+
       # Activity monitoring
       setw -g monitor-activity on
       set -g visual-activity off
