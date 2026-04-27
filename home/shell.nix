@@ -32,6 +32,12 @@
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    completionInit = "autoload -U compinit && compinit -C";
+
+    profileExtra = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      export PATH="$PATH:/Users/x/.local/bin"
+    '';
 
     history = {
       size = 1000000000;
