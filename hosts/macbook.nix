@@ -38,6 +38,7 @@
       "gimp"
       "google-chrome"
       "jellyfin-media-player"
+      "linear-linear"
       "macfuse"
       "nordvpn"
       "obsidian"
