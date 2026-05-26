@@ -122,20 +122,25 @@
       "Bash(AWS_PROFILE=* aws ecs describe-tasks*)"
     ],
     "ask": [
-      "Bash(pnpm*install*)",
-      "Bash(pnpm*add*)",
-      "Bash(pnpm*remove*)",
-      "Bash(pnpm*update*)",
-      "Bash(pnpm*exec*)",
-      "Bash(pnpm*dlx*)",
-      "Bash(pnpm*publish*)",
-      "Bash(pnpm*link*)",
-      "Bash(pnpm*patch*)",
-      "Bash(pnpm*config*)",
-      "Bash(pnpm*store*)",
-      "Bash(pnpm*setup*)",
-      "Bash(pnpm*import*)",
-      "Bash(pnpm*deploy*)"
+      "Bash(pnpm* install*)",
+      "Bash(pnpm* i *)",
+      "Bash(pnpm* i)",
+      "Bash(pnpm* add *)",
+      "Bash(pnpm* remove*)",
+      "Bash(pnpm* rm *)",
+      "Bash(pnpm* update*)",
+      "Bash(pnpm* up *)",
+      "Bash(pnpm* up)",
+      "Bash(pnpm* dlx *)",
+      "Bash(pnpm* publish*)",
+      "Bash(pnpm* link*)",
+      "Bash(pnpm* unlink*)",
+      "Bash(pnpm* patch*)",
+      "Bash(pnpm* config*)",
+      "Bash(pnpm* store*)",
+      "Bash(pnpm* setup*)",
+      "Bash(pnpm* import*)",
+      "Bash(pnpm* deploy*)"
     ]
   }
 }
