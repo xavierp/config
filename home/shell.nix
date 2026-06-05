@@ -26,6 +26,9 @@
     tflint
     gh
     difftastic
+
+    # PostgreSQL client tools (pg_dump, psql, etc.)
+    postgresql_18
   ];
 
   programs.zsh = {
@@ -143,6 +146,7 @@
         format = "[$virtualenv]($style) ";
         style = "bright-black";
       };
+
     };
   };
 }

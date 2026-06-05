@@ -11,6 +11,7 @@
     ./neovim.nix
     ./aerospace.nix
     ./mise.nix
+    ./devenv.nix
   ];
 
   home.stateVersion = "25.05";
