@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -31,5 +31,12 @@
     source = ../files/scripts/tmux-url-picker;
     executable = true;
   };
+
+  # Obsidian CLI: symlink the binary bundled in the app onto PATH.
+  # Replaces Obsidian's built-in registration, which fails here because it
+  # tries to write to ~/.zprofile (a read-only symlink into the Nix store).
+  home.file.".local/bin/obsidian".source =
+    config.lib.file.mkOutOfStoreSymlink
+      "/Applications/Obsidian.app/Contents/MacOS/obsidian-cli";
 
 }
