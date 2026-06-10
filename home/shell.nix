@@ -29,6 +29,9 @@
 
     # PostgreSQL client tools (pg_dump, psql, etc.)
     postgresql_18
+
+    # PDF tooling (pdftotext, pdfinfo, etc.)
+    poppler-utils
   ];
 
   programs.zsh = {
