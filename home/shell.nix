@@ -72,12 +72,9 @@
       g = "git";
       tf = "terraform";
 
-      # Modern replacements
-      cat = "bat";
-      ls = "eza -1 --icons";
+      # bat/eza/rg/fd installés mais pas aliasés sur cat/ls/grep/find :
+      # comportement standard par défaut, outils modernes à la demande
       ll = "eza -alh --icons --git";
-      grep = "rg";
-      find = "fd";
     };
   };
 
