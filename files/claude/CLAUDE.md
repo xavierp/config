@@ -30,9 +30,9 @@
 
 - Branches : `feat/`, `fix/`, `chore/` + description courte
 - Commits : conventionnel (feat, fix, refactor…), en anglais
-- Ne jamais commiter directement sur `main`
-- Commit et ouvre une pull request Github en draft quand tu as terminé
-- When starting a new task, use a new branch up to date on origin/master
+- Ne jamais commiter directement sur `main`/`master` dans les repos collaboratifs (>1 contributeur). Dans les repos solo (ex. `second-brain`), le commit direct sur master est OK
+- Repos collaboratifs : commit et ouvre une pull request Github en draft quand tu as terminé
+- When starting a new task in a collaborative repo, use a new branch up to date on origin/master
 
 ## Ce que je veux que tu fasses par défaut
 
