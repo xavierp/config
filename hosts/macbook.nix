@@ -47,6 +47,7 @@
       "alacritty"
       "bruno"
       "chromium"
+      "cyberduck"
       "dash"
       "datagrip"
       "discord"
