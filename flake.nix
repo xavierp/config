@@ -18,7 +18,7 @@
 
   outputs = { self, nixpkgs, nix-darwin, home-manager, devenv, ... }: {
     darwinConfigurations."macbook" = nix-darwin.lib.darwinSystem {
-      stdenv.hostPlatform.system = "aarch64-darwin";
+      system = "aarch64-darwin";
       modules = [
         ./hosts/macbook.nix
         home-manager.darwinModules.home-manager
