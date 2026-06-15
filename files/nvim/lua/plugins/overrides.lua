@@ -10,4 +10,15 @@ return {
       window = { position = "right" },
     },
   },
+
+  -- Disable markdownlint diagnostics (too noisy, makes markdown unreadable)
+  {
+    "mfussenegger/nvim-lint",
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      -- replace, don't extend: clears markdownlint-cli2 from the markdown extra
+      opts.linters_by_ft.markdown = {}
+      opts.linters_by_ft.markdownreact = {}
+    end,
+  },
 }
