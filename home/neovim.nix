@@ -55,7 +55,7 @@
     lazygit               # git TUI (Space g g in LazyVim)
     gcc
     gnumake
-    nodejs
+    # node fourni globalement par home/runtimes.nix (nodejs_26)
     unzip
   ];
 }

@@ -10,7 +10,7 @@
     ./tmux.nix
     ./neovim.nix
     ./aerospace.nix
-    ./mise.nix
+    ./runtimes.nix
     ./devenv.nix
   ];
 
