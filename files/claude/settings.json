@@ -14,8 +14,8 @@
     "pr-review-toolkit@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
-  "model": "claude-opus-4-6[1m]",
+  "effortLevel": "xhigh",
+  "model": "claude-opus-4-8[1m]",
   "feedbackSurveyState": {
     "lastShownTime": 1754313282579
   },
