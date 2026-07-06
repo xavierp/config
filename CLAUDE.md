@@ -62,7 +62,7 @@ nix flake update
 - **Aerospace TWM**: tiling WM, binds `ctrl+alt-*` (physical left Alt + key). Config at `files/aerospace/aerospace.toml`. Cask currently commented out — needs macOS Spaces settings tuned first.
 - **home-manager.backupFileExtension = "bak"**: old dotfiles get .bak suffix instead of blocking
 - **Mason disabled**: LSP servers installed via Nix in neovim.nix, not via Mason
-- **nvm/rbenv**: still managed outside Nix (sourced in shell.nix initContent)
+- **Runtimes**: global ruby/node/python/terraform via nixpkgs (home/runtimes.nix), per-project via devenv. mise/nvm/rbenv fully removed (2026-07)
 - **homebrew.onActivation.cleanup = "none"**: set to "zap" once cask list is verified
 
 ## Conventions
