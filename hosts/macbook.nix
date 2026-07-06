@@ -39,6 +39,13 @@
       autoUpdate = true;
       cleanup = "none";
     };
+    # projectM : le formula brew fournit projectMSDL + libprojectM 3.1.
+    # La GUI /Applications/projectM.app (frontend SDL 2.0, libprojectM 4) vient
+    # du DMG GitHub, installée à la main — pas de cask, et projectm-sdl-cpp
+    # est marqué broken sur darwin dans nixpkgs. À re-checker de temps en temps.
+    brews = [
+      "projectm"
+    ];
     casks = [
       "1password"
       "1password-cli"
@@ -60,10 +67,12 @@
       "google-chrome"
       "jellyfin-media-player"
       "linear"
+      "localsend"
       "macfuse"
       "nordvpn"
       "obsidian"
       "protonvpn"
+      "qlc+"
       "raycast"
       "session-manager-plugin"
       "sigmaos"
