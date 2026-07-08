@@ -26,6 +26,7 @@
     tflint
     gh
     difftastic
+    gws          # Google Workspace CLI
 
     # PostgreSQL client tools (pg_dump, psql, etc.)
     postgresql_18
