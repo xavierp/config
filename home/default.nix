@@ -12,6 +12,7 @@
     ./aerospace.nix
     ./runtimes.nix
     ./devenv.nix
+    ./elk-herd.nix
   ];
 
   home.stateVersion = "25.05";
