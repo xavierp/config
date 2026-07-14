@@ -210,13 +210,36 @@ let
     port="''${1:-8676}"
     url="http://localhost:$port/"
 
+    # Refuse de démarrer si le port est déjà occupé (déterministe, avant le bind)
+    if (exec 3<>"/dev/tcp/127.0.0.1/$port") 2>/dev/null; then
+      echo "elk-herd: port $port déjà utilisé (elk-herd déjà lancé ?)" >&2
+      exit 1
+    fi
+
     ${python3}/bin/python3 -m http.server "$port" --bind 127.0.0.1 \
       --directory ${site}/share/elk-herd &
     server_pid=$!
     trap 'kill "$server_pid" 2>/dev/null' EXIT INT TERM
 
+    # Attend que le serveur écoute ; échoue vite s'il est mort
+    ready=""
+    for _ in $(seq 1 40); do
+      if ! kill -0 "$server_pid" 2>/dev/null; then
+        echo "elk-herd: le serveur n'a pas démarré" >&2
+        exit 1
+      fi
+      if (exec 3<>"/dev/tcp/127.0.0.1/$port") 2>/dev/null; then
+        ready=1
+        break
+      fi
+      sleep 0.25
+    done
+    if [ -z "$ready" ]; then
+      echo "elk-herd: le serveur ne répond pas sur $url" >&2
+      exit 1
+    fi
+
     echo "elk-herd: $url  (Ctrl-C pour arrêter)"
-    sleep 1
     open -a "Google Chrome" "$url" 2>/dev/null || open "$url"
     wait "$server_pid"
   '';
@@ -277,6 +300,18 @@ kill "$LAUNCHER_PID"
 ```
 
 Attendu : `<!DOCTYPE HTML>` dans les 3 premières lignes, puis `200`, `200`. (Le launcher aura aussi ouvert Chrome — fermer l'onglet, c'est le test de Task 4 qui compte.)
+
+Cas port occupé (fail-fast, ajouté après review 2026-07-14) :
+
+```bash
+RESULT="${TMPDIR:-/tmp}/elk-herd-result"
+"$RESULT/bin/elk-herd" 8678 & FIRST_PID=$!
+sleep 3
+"$RESULT/bin/elk-herd" 8678; echo "exit=$?"
+kill "$FIRST_PID"
+```
+
+Attendu : la 2e invocation affiche `elk-herd: port 8678 déjà utilisé (elk-herd déjà lancé ?)` et `exit=1`, immédiatement (pas d'ouverture de Chrome sur URL morte). Nota : le probe readiness seul serait racé (il peut répondre grâce au serveur de l'autre instance avant que notre python meure sur le bind) — d'où le pré-check déterministe avant le bind.
 
 - [ ] **Step 5: Commit**
 
