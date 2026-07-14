@@ -95,13 +95,36 @@ let
     port="''${1:-8676}"
     url="http://localhost:$port/"
 
+    # Refuse de démarrer si le port est déjà occupé (déterministe, avant le bind)
+    if (exec 3<>"/dev/tcp/127.0.0.1/$port") 2>/dev/null; then
+      echo "elk-herd: port $port déjà utilisé (elk-herd déjà lancé ?)" >&2
+      exit 1
+    fi
+
     ${python3}/bin/python3 -m http.server "$port" --bind 127.0.0.1 \
       --directory ${site}/share/elk-herd &
     server_pid=$!
     trap 'kill "$server_pid" 2>/dev/null' EXIT INT TERM
 
+    # Attend que le serveur écoute ; échoue vite s'il est mort
+    ready=""
+    for _ in $(seq 1 40); do
+      if ! kill -0 "$server_pid" 2>/dev/null; then
+        echo "elk-herd: le serveur n'a pas démarré" >&2
+        exit 1
+      fi
+      if (exec 3<>"/dev/tcp/127.0.0.1/$port") 2>/dev/null; then
+        ready=1
+        break
+      fi
+      sleep 0.25
+    done
+    if [ -z "$ready" ]; then
+      echo "elk-herd: le serveur ne répond pas sur $url" >&2
+      exit 1
+    fi
+
     echo "elk-herd: $url  (Ctrl-C pour arrêter)"
-    sleep 1
     open -a "Google Chrome" "$url" 2>/dev/null || open "$url"
     wait "$server_pid"
   '';
