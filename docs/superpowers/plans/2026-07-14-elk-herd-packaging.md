@@ -12,7 +12,8 @@
 
 ## Global Constraints
 
-- nixpkgs pinné du flake : `github:cachix/devenv-nixpkgs/8f24a228a782e24576b155d1e39f0d914b380691`, système `aarch64-darwin`. Disponibilités vérifiées : `elmPackages.elm` 0.19.1, `elmPackages.fetchElmDeps`, `terser` 5.46.1 (top-level, PAS `nodePackages.terser` — supprimé), `elm2nix` 0.4.0.
+- nixpkgs racine du flake : `github:NixOS/nixpkgs/b3c092d3c36d91e2f61f3dfb39a159f180a56659` (nixpkgs-unstable locké), système `aarch64-darwin`. Disponibilités vérifiées à ce rev : `elmPackages.elm` 0.19.1 (**substituable depuis cache.nixos.org** — aucune compilation GHC), `elmPackages.fetchElmDeps`, `terser` 5.47.1 (top-level, PAS `nodePackages.terser` — supprimé), `elm2nix` 0.4.0.
+  - **Correction 2026-07-14** : la première version de ce plan pinnait `cachix/devenv-nixpkgs/8f24a228…` — c'est le nœud nixpkgs *de l'input devenv* dans flake.lock (`.nodes.nixpkgs`), pas le nixpkgs racine (`.nodes.root.inputs.nixpkgs` → `nixpkgs_2`). Sur ce mauvais rev, `elmPackages.elm` n'est caché nulle part en aarch64-darwin et le bootstrap GHC échoue (`Failed to find C++ standard library`). Task 1 a été exécutée avec l'elm2nix de ce mauvais pin : sans conséquence, ses outputs (lockfiles) ne dépendent pas du nixpkgs.
 - Version upstream pinnée : tag `v3.3.4` (commit 056f496b4a6dd6d0cc836d45356be38fe6114868).
 - Hashes SRI préfetchés (2026-07-14) — à utiliser tels quels :
   - src GitHub : `sha256-kje7c5x+St50TNnqu062eJnj18p1qKtSL3wElpBw2PU=`
@@ -70,7 +71,7 @@ nix shell "$NP#elm2nix" -c elm2nix snapshot
 ls -la elm-srcs.nix registry.dat
 ```
 
-Attendu : les deux fichiers existent, `registry.dat` fait plusieurs centaines de Ko. (`elm2nix snapshot` télécharge le registry courant — le contenu exact varie selon la date, c'est normal ; seul compte qu'il contienne les versions d'`elm.json`.)
+Attendu : les deux fichiers existent. (`registry.dat` peut être minimal — ~400 octets pour la closure exacte des 15 packages — c'est valide ; constaté à l'exécution le 2026-07-14.) (`elm2nix snapshot` télécharge le registry courant — le contenu exact varie selon la date, c'est normal ; seul compte qu'il contienne les versions d'`elm.json`.)
 
 - [ ] **Step 3: Vérifier la forme d'elm-srcs.nix**
 
@@ -236,7 +237,7 @@ symlinkJoin {
 
 Points d'attention pour l'implémenteur :
 - `''${1:-8676}` : échappement Nix voulu — produit `${1:-8676}` dans le script shell final. Ne pas "corriger".
-- `terser` est le package top-level, PAS `nodePackages.terser`.
+- `terser` est le package top-level (5.47.1 au rev pinné), PAS `nodePackages.terser`.
 - Le `ln -sf` remplace le symlink `Debug.elm.dev` présent dans le src (make-prod.sh fait pareil).
 
 - [ ] **Step 2: Builder le package directement (sans passer par le flake)**
@@ -244,7 +245,7 @@ Points d'attention pour l'implémenteur :
 ```bash
 RESULT="${TMPDIR:-/tmp}/elk-herd-result"
 nix build --impure -L -o "$RESULT" --expr \
-  '(builtins.getFlake "github:cachix/devenv-nixpkgs/8f24a228a782e24576b155d1e39f0d914b380691").legacyPackages.aarch64-darwin.callPackage /Users/x/src/config/pkgs/elk-herd { }'
+  '(builtins.getFlake "github:NixOS/nixpkgs/b3c092d3c36d91e2f61f3dfb39a159f180a56659").legacyPackages.aarch64-darwin.callPackage /Users/x/src/config/pkgs/elk-herd { }'
 ```
 
 Attendu : build OK (compte quelques minutes la première fois : compilation Elm + deps). En cas d'erreur de hash `fetchElmDeps`, vérifier que `elm-srcs.nix`/`registry.dat` viennent bien du tag v3.3.4 (Task 1).
