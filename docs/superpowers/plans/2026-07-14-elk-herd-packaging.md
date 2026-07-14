@@ -6,7 +6,7 @@
 
 **Architecture:** Une derivation `site` reproduit les étapes de `make-prod.sh` upstream dans la sandbox (deps Elm offline via elm2nix/`fetchElmDeps`, assets externes en `fetchurl` pinnés, `elm make --optimize` + terser), un `writeShellScriptBin` fournit le launcher, `symlinkJoin` assemble les deux. Un module home-manager `home/elk-herd.nix` installe le package.
 
-**Tech Stack:** Nix (nix-darwin + home-manager), Elm 0.19.1, elm2nix 0.4.0, terser 5.46.1, python3 http.server (launcher).
+**Tech Stack:** Nix (nix-darwin + home-manager), Elm 0.19.1, elm2nix 0.4.0, terser 5.47.1, python3 http.server (launcher).
 
 **Spec:** `docs/superpowers/specs/2026-07-14-elk-herd-install-design.md`
 
