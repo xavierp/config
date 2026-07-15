@@ -58,7 +58,6 @@
       "docker-desktop"
       "firefox"
       "font-fira-code-nerd-font"
-      "gcloud-cli"
       "ghostty"
       "gimp"
       "google-chrome"

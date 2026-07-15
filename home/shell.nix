@@ -27,6 +27,10 @@
     gh
     difftastic
     gws          # Google Workspace CLI
+    # gcloud + gke auth plugin (suit le flake, remplace le cask gcloud-cli)
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+    ])
 
     # PostgreSQL client tools (pg_dump, psql, etc.)
     postgresql_18
