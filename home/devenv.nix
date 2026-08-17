@@ -3,8 +3,8 @@
 {
   programs.devenv = {
     enable = true;
-    # garde ta branche patchée — sinon le module prend pkgs.devenv (sans le fix TMPDIR)
-    package = devenv.packages.${pkgs.system}.devenv;
+    # devenv depuis le flake input (main) plutôt que pkgs.devenv, plus à jour
+    package = devenv.packages.${pkgs.stdenv.hostPlatform.system}.devenv;
     enableZshIntegration = false;   # on gère le hook nous-mêmes pour pouvoir le garder
   };
 
