@@ -11,9 +11,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # TEMP: branche du fix DEVENV_RUNTIME/TMPDIR — revenir sur github:cachix/devenv
-    # une fois https://github.com/cachix/devenv/pull/2927 mergée
-    devenv.url = "github:cachix/devenv/fix/runtime-dir-tmpdir-2923";
+    devenv.url = "github:cachix/devenv";
   };
 
   outputs = { self, nixpkgs, nix-darwin, home-manager, devenv, ... }: {
