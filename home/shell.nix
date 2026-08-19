@@ -27,6 +27,7 @@
     gh
     difftastic
     gws          # Google Workspace CLI
+    nixd         # Nix LSP (utilisé par Zed)
     # gcloud + gke auth plugin (suit le flake, remplace le cask gcloud-cli)
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.gke-gcloud-auth-plugin
