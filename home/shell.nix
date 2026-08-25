@@ -16,6 +16,7 @@
     tree
     watch
     gnused
+    gnupg        # pinentry-mac déjà câblé dans le gpg-agent de nixpkgs
 
     # Session management
     sesh
