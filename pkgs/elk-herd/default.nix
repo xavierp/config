@@ -43,10 +43,17 @@ let
 
     nativeBuildInputs = [ elmPackages.elm terser unzip ];
 
+    # elm 0.19.2 (nixpkgs 26.11) refuse un elm.json qui déclare 0.19.1 ; le code
+    # compile tel quel, on aligne juste la contrainte de version.
+    postPatch = ''
+      substituteInPlace elm.json \
+        --replace-fail '"elm-version": "0.19.1"' '"elm-version": "${elmPackages.elm.version}"'
+    '';
+
     # Peuple ELM_HOME hors-ligne avec les deps d'elm.json
     preConfigure = elmPackages.fetchElmDeps {
       elmPackages = import ./elm-srcs.nix;
-      elmVersion = "0.19.1";
+      elmVersion = elmPackages.elm.version;
       registryDat = ./registry.dat;
     };
 
