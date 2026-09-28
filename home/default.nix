@@ -12,7 +12,7 @@
     ./aerospace.nix
     ./runtimes.nix
     ./devenv.nix
-    ./elk-herd.nix
+    # ./elk-herd.nix  # désactivé : upstream mzero/elk-herd vidé (tag v3.3.4 en 404), source à rebrancher
   ];
 
   home.stateVersion = "25.05";
