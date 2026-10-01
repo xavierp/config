@@ -39,6 +39,9 @@
 
     # PDF tooling (pdftotext, pdfinfo, etc.)
     poppler-utils
+
+    # Media
+    ffmpeg
   ];
 
   programs.zsh = {
