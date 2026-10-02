@@ -15,7 +15,9 @@
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
-  "model": "claude-opus-5[1m]",
+  "model": "opus",
+  "feedbackDrafts": "off",
+  "tui": "fullscreen",
   "feedbackSurveyState": {
     "lastShownTime": 1754313282579
   },
