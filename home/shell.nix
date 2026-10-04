@@ -8,7 +8,7 @@ let
   #   intervals 1|2|3  → uniquement le dossier dont le nom commence par ce numéro
   intervals = pkgs.writeShellApplication {
     name = "intervals";
-    runtimeInputs = with pkgs; [ coreutils findutils ];
+    runtimeInputs = with pkgs; [ coreutils findutils ffmpeg ];
     text = ''
       root="''${INTERVALS_DIR:-$HOME/Downloads/intervalles audio}"
       filter="''${1:-all}"
@@ -30,13 +30,18 @@ let
         exit 1
       fi
 
+      clip=$(mktemp -d)/clip.wav
+      trap 'rm -rf "$(dirname "$clip")"' EXIT
+
       echo "''${#sounds[@]} sons — Entrée : réponse · r : réécouter · q : quitter"
       while true; do
         sound=$(printf '%s\n' "''${sounds[@]}" | shuf -n 1)
+        # Les fichiers enchaînent intervalle puis réponse parlée (début ~3,4 s
+        # au plus tôt) : on extrait les 3 premières secondes avec un fondu,
+        # afplay -t n'étant pas assez précis pour couper avant la voix.
+        ffmpeg -loglevel error -y -i "$sound" -t 3 -af afade=t=out:st=2.8:d=0.2 "$clip"
         while true; do
-          # Les fichiers enchaînent intervalle (fin ≤ 3,05 s) puis réponse
-          # parlée (début ≥ 3,46 s) : on ne joue que l'intervalle.
-          /usr/bin/afplay -t 3.3 "$sound"
+          /usr/bin/afplay "$clip"
           read -rp "? " key
           case "$key" in
             r) continue ;;
@@ -46,7 +51,7 @@ let
         done
         echo "→ $(basename "$(dirname "$sound")") / $(basename "$sound" .mp3)"
         while true; do
-          /usr/bin/afplay -t 3.3 "$sound"
+          /usr/bin/afplay "$clip"
           read -rp "Entrée : suivant · r : réécouter · q : quitter " key
           case "$key" in
             r) continue ;;
