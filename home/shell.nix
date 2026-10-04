@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  # Entraînement à l'oreille : joue un intervalle au hasard sans afficher
-  # son nom (le nom du fichier donne la réponse), Entrée pour révéler.
+  # Entraînement à l'oreille : joue un intervalle au hasard sans le nom du
+  # fichier ni la réponse parlée en fin de piste, Entrée pour révéler.
   #   intervals        → tous les dossiers mélangés
   #   intervals 1|2|3  → uniquement le dossier dont le nom commence par ce numéro
   intervals = pkgs.writeShellApplication {
@@ -33,7 +33,9 @@ let
       while true; do
         sound=$(printf '%s\n' "''${sounds[@]}" | shuf -n 1)
         while true; do
-          /usr/bin/afplay "$sound"
+          # Les fichiers enchaînent intervalle (fin ≤ 3,05 s) puis réponse
+          # parlée (début ≥ 3,46 s) : on ne joue que l'intervalle.
+          /usr/bin/afplay -t 3.3 "$sound"
           read -rp "? " key
           case "$key" in
             r) continue ;;
