@@ -2,7 +2,8 @@
 
 let
   # Entraînement à l'oreille : joue un intervalle au hasard sans le nom du
-  # fichier ni la réponse parlée en fin de piste, Entrée pour révéler.
+  # fichier ni la réponse parlée en fin de piste, Entrée pour révéler
+  # (rejoue l'intervalle avec la réponse), Entrée pour passer au suivant.
   #   intervals        → tous les dossiers mélangés
   #   intervals 1|2|3  → uniquement le dossier dont le nom commence par ce numéro
   intervals = pkgs.writeShellApplication {
@@ -44,6 +45,9 @@ let
           esac
         done
         echo "→ $(basename "$(dirname "$sound")") / $(basename "$sound" .mp3)"
+        /usr/bin/afplay -t 3.3 "$sound"
+        read -rp "Entrée : suivant · q : quitter " key
+        [ "$key" = "q" ] && exit 0
         echo
       done
     '';
