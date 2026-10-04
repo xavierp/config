@@ -45,9 +45,15 @@ let
           esac
         done
         echo "→ $(basename "$(dirname "$sound")") / $(basename "$sound" .mp3)"
-        /usr/bin/afplay -t 3.3 "$sound"
-        read -rp "Entrée : suivant · q : quitter " key
-        [ "$key" = "q" ] && exit 0
+        while true; do
+          /usr/bin/afplay -t 3.3 "$sound"
+          read -rp "Entrée : suivant · r : réécouter · q : quitter " key
+          case "$key" in
+            r) continue ;;
+            q) exit 0 ;;
+            *) break ;;
+          esac
+        done
         echo
       done
     '';
