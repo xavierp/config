@@ -1,67 +1,12 @@
 { pkgs, ... }:
 
 let
-  # Entraînement à l'oreille : joue un intervalle au hasard sans le nom du
-  # fichier ni la réponse parlée en fin de piste, Entrée pour révéler
-  # (rejoue l'intervalle avec la réponse), Entrée pour passer au suivant.
-  #   intervals        → tous les dossiers mélangés
-  #   intervals 1|2|3  → uniquement le dossier dont le nom commence par ce numéro
+  # Entraînement à l'oreille aux intervalles : progression par niveaux ou
+  # mode libre, voir l'en-tête de intervals.sh
   intervals = pkgs.writeShellApplication {
     name = "intervals";
     runtimeInputs = with pkgs; [ coreutils findutils ffmpeg ];
-    text = ''
-      root="''${INTERVALS_DIR:-$HOME/Downloads/intervalles audio}"
-      filter="''${1:-all}"
-
-      if [ "$filter" = "all" ]; then
-        dirs=("$root")
-      else
-        mapfile -t dirs < <(find "$root" -mindepth 1 -maxdepth 1 -type d -name "$(printf '%02d' "$filter") *")
-        if [ "''${#dirs[@]}" -eq 0 ]; then
-          echo "Aucun dossier '$filter' dans $root :" >&2
-          find "$root" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort >&2
-          exit 1
-        fi
-      fi
-
-      mapfile -t sounds < <(find "''${dirs[@]}" -type f -name '*.mp3')
-      if [ "''${#sounds[@]}" -eq 0 ]; then
-        echo "Aucun mp3 trouvé dans ''${dirs[*]}" >&2
-        exit 1
-      fi
-
-      clip=$(mktemp -d)/clip.wav
-      trap 'rm -rf "$(dirname "$clip")"' EXIT
-
-      echo "''${#sounds[@]} sons — Entrée : réponse · r : réécouter · q : quitter"
-      while true; do
-        sound=$(printf '%s\n' "''${sounds[@]}" | shuf -n 1)
-        # Les fichiers enchaînent intervalle puis réponse parlée (début ~3,4 s
-        # au plus tôt) : on extrait les 3 premières secondes avec un fondu,
-        # afplay -t n'étant pas assez précis pour couper avant la voix.
-        ffmpeg -loglevel error -y -i "$sound" -t 3 -af afade=t=out:st=2.8:d=0.2 "$clip"
-        while true; do
-          /usr/bin/afplay "$clip"
-          read -rp "? " key
-          case "$key" in
-            r) continue ;;
-            q) exit 0 ;;
-            *) break ;;
-          esac
-        done
-        echo "→ $(basename "$(dirname "$sound")") / $(basename "$sound" .mp3)"
-        while true; do
-          /usr/bin/afplay "$clip"
-          read -rp "Entrée : suivant · r : réécouter · q : quitter " key
-          case "$key" in
-            r) continue ;;
-            q) exit 0 ;;
-            *) break ;;
-          esac
-        done
-        echo
-      done
-    '';
+    text = builtins.readFile ./intervals.sh;
   };
 in
 {
