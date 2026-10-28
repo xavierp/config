@@ -48,9 +48,7 @@
       "1password-cli"
       # "aerospace"  # TODO: re-enable once macOS Spaces settings are tuned
       "karabiner-elements"
-      "alacritty"
       "bruno"
-      "chromium"
       "cyberduck"
       "dash"
       "datagrip"
