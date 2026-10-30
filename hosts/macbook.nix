@@ -63,6 +63,7 @@
       "linear"
       "localsend"
       "macfuse"
+      "nextcloud"
       "nordvpn"
       "obsidian"
       "protonvpn"
